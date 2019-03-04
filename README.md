@@ -1,5 +1,5 @@
 <script src="calc.js"></script>
-<div id='calc' style='width: 360px;'>
+<div id='calc' style='width: 410px;'>
     <div id='input'>
         <table style='table-layout:fixed;'>
             <col width="205px" />
