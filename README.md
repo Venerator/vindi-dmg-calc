@@ -2,8 +2,8 @@
 <div id='calc' style='width: 360px;'>
     <div id='input'>
         <table style='table-layout:fixed;'>
-            <col width="180px" />
-            <col width="120px" />
+            <col width="205px" />
+            <col width="200px" />
             <tr>
                 <td nowrap>대상 (보스)</td>
                 <td>
@@ -59,8 +59,8 @@
     </div>
     <div id='output'>
         <table style='table-layout:fixed;'>
-            <col width="180px" />
-            <col width="120px" />
+            <col width="205px" />
+            <col width="200px" />
             <tr>
                 <td nowrap>유효전투력(크리 미적용)</td>
                 <td><input id='nocritdmg' readonly></td>
