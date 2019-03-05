@@ -114,8 +114,8 @@ function compare() {
     let inputdeal1 = document.querySelector('#compare #input input#deal1').value * 1;
     let inputdeal2 = document.querySelector('#compare #input input#deal2').value * 1;
 
-    let samespecdeal1 = inputdeal1 / critdmg1;
-    let samespecdeal2 = inputdeal2 / critdmg2;
+    let samespecdeal1 = inputdeal1 * 100000 / critdmg1;
+    let samespecdeal2 = inputdeal2 * 100000 / critdmg2;
 
     let outputdeal1 = samespecdeal1 / (samespecdeal1 + samespecdeal2) * 100;
     let outputdeal2 = samespecdeal2 / (samespecdeal1 + samespecdeal2) * 100;
