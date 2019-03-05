@@ -28,7 +28,7 @@
                     <tr>
                         <td nowrap>대상 (보스)</td>
                         <td>
-                            <select id="boss" onchange="if(this.value == 'custom') {document.querySelectorAll('.customstat')[0].style.display='';document.querySelectorAll('.customstat')[1].style.display='';} else {document.querySelectorAll('.customstat')[0].style.display='none';document.querySelectorAll('.customstat')[1].style.display='none';}">
+                            <select id="boss" onchange="if(this.value == 'custom') {document.querySelectorAll('.customstat').forEach(function(x){x.style.display='';});} else {document.querySelectorAll('.customstat').forEach(function(x){x.style.display='none';});}">
                                 <option label="6종" value="lvl90raids"></option>
                                 <option label="듀라한" value="dullahan"></option>
                                 <option label="에스 시더" value="aessidhe"></option>
@@ -55,6 +55,14 @@
                         <td nowrap>보스 크리티컬 저항</td>
                         <td><input id='bossres' value='0'></td>
                     </tr>
+                    <tr class='customstat' style='display: none;'>
+                        <td nowrap>보스 대항력 저항(0 = 대항력 미적용)</td>
+                        <td><input id='bossdongsukres' value='0'></td>
+                    </tr>
+                    <tr class='customstat' style='display: none;'>
+                        <td nowrap>대항력 보정 최소치(10 = 대항력이 낮아도 최소 10%의 데미지 적용)</td>
+                        <td><input id='bossdongsukmindmg' value='100'></td>
+                    </tr>
                 </table>
                 <hr>
                 <div id='calc1' style='display: inline-block; width: 320px;'>
@@ -76,11 +84,15 @@
                             </tr>
                             <tr>
                                 <td nowrap>밸런스</td>
-                                <td><input id='bal' value='0'></td>
+                                <td><input id='bal' value='90'></td>
                             </tr>
                             <tr>
                                 <td nowrap>크리티컬</td>
                                 <td><input id='cri' value='0'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>대항력</td>
+                                <td><input id='dongsuk' value='200'></td>
                             </tr>
                         </table>
                         <button style='width: 304px;' onclick='exec();'>전투력 계산</button>
@@ -119,11 +131,15 @@
                             </tr>
                             <tr>
                                 <td nowrap>밸런스</td>
-                                <td><input id='bal' value='0'></td>
+                                <td><input id='bal' value='90'></td>
                             </tr>
                             <tr>
                                 <td nowrap>크리티컬</td>
                                 <td><input id='cri' value='0'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>대항력</td>
+                                <td><input id='dongsuk' value='200'></td>
                             </tr>
                         </table>
                         <button style='width: 304px;' onclick='exec();'>전투력 계산</button>
