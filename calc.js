@@ -1,59 +1,87 @@
 const bossstat = {
     lvl90raids: {
         def: 13000,
-        res: 80
+        res: 80,
+        dongsukres: 0,
+        dongsukmindmg: 100
     },
     dullahan: {
         def: 18500,
-        res: 105
+        res: 105,
+        dongsukres: 0,
+        dongsukmindmg: 100
     },
     aessidhe: {
         def: 20500,
-        res: 105
+        res: 105,
+        dongsukres: 0,
+        dongsukmindmg: 100
     },
     arcana: {
         def: 20500,
-        res: 108
+        res: 108,
+        dongsukres: 0,
+        dongsukmindmg: 100
     },
     rupacitus: {
         def: 21300,
-        res: 114
+        res: 114,
+        dongsukres: 0,
+        dongsukmindmg: 100
     },
     claire: {
         def: 24000,
-        res: 125
+        res: 125,
+        dongsukres: 5,
+        dongsukmindmg: 30
     },
     elchulus: {
         def: 26000,
-        res: 127
+        res: 127,
+        dongsukres: 10,
+        dongsukmindmg: 20
     },
     macha: {
         def: 27000,
-        res: 130
+        res: 130,
+        dongsukres: 30,
+        dongsukmindmg: 10
     },
     agares: {
         def: 28000,
-        res: 131
+        res: 131,
+        dongsukres: 40,
+        dongsukmindmg: 10
     },
     lugh: {
         def: 28500,
-        res: 132
+        res: 132,
+        dongsukres: 45,
+        dongsukmindmg: 10
     },
     special: {
         def: 26000,
-        res: 127
+        res: 127,
+        dongsukres: 20,
+        dongsukmindmg: 10
     },
     neamhain: {
         def: 17000,
-        res: 90
+        res: 90,
+        dongsukres: 0,
+        dongsukmindmg: 100
     },
     balor: {
         def: 23500,
-        res: 123
+        res: 123,
+        dongsukres: 0,
+        dongsukmindmg: 100
     },
     hell: {
         def: 29000,
-        res: 145
+        res: 145,
+        dongsukres: 0,
+        dongsukmindmg: 100
     }
 }
 
@@ -64,7 +92,9 @@ function exec() {
     if(document.querySelector('select#boss').value == 'custom')
         boss = {
             def: document.querySelector('input#bossdef').value * 1,
-            res: document.querySelector('input#bossres').value * 1
+            res: document.querySelector('input#bossres').value * 1,
+            dongsukres: document.querySelector('input#bossdongsukres').value * 1,
+            dongsukmindmg: document.querySelector('input#bossdongsukmindmg').value * 1
         };
     else
         boss = bossstat[document.querySelector('select#boss').value];
@@ -73,15 +103,16 @@ function exec() {
     let alr = target.querySelector('input#alr').value * 1;
     let bal = target.querySelector('input#bal').value * 1;
     let cri = target.querySelector('input#cri').value * 1;
+    let dongsuk = target.querySelector('input#dongsuk').value * 1;
 
-    dmg = calcdmg(boss, atk, add, alr, bal, cri);
+    dmg = calcdmg(boss, atk, add, alr, bal, cri, dongsuk);
     
 
     target.querySelector('input#nocritdmg').value = Math.round(dmg[0] * 100) / 100;
     target.querySelector('input#critdmg').value = Math.round(dmg[1] * 100) / 100;
 }
 
-function calcdmg(boss, atk, add, alr, bal, cri) {
+function calcdmg(boss, atk, add, alr, bal, cri, dongsuk) {
     let att = Math.max(Math.min(10000 + alr, atk - boss.def), 0);
     let base;
     if(att <= (boss.def * 2)){
@@ -103,6 +134,11 @@ function calcdmg(boss, atk, add, alr, bal, cri) {
     let effcrit = Math.max(Math.min(50, cri - boss.res), 3);
     
     let nocritdmg = (base + add * adm) * (bal + 100) / 200;
+    if(boss.dongsukres > 0){
+        let ddm = Math.max(Math.min(dongsuk - boss.dongsukres, 100), boss.dongsukmindmg) / 100;
+        nocritdmg = nocritdmg * ddm;
+    }
+
     let critdmg = nocritdmg * (1.95 * (effcrit / 100) + 1 * ((100 - effcrit) / 100));
     
     return [nocritdmg, critdmg];
