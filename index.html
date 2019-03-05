@@ -17,6 +17,9 @@
                 margin: 0;
                 padding: 0;
             }
+            tr td:first-child {
+                padding-left: 10px;
+            }
         </style>
     </head>
     <body>
@@ -68,6 +71,7 @@
                 </table>
                 <hr>
                 <div id='calc1' style='display: inline-block; width: 340px;'>
+                    <div style='text-align: center;'>1번 캐릭터</div>
                     <div id='input'>
                         <table style='table-layout:fixed;'>
                             <col width="200px" />
@@ -104,7 +108,7 @@
                                 <td><input id='dongsuk' value='200'></td>
                             </tr>
                         </table>
-                        <button style='width: 324px;' onclick='exec(1);'>전투력 계산</button>
+                        <button style='width: 324px;' onclick='exec(1);'>1번 캐릭터 전투력 계산</button>
                     </div>
                     <div id='output'>
                         <table style='table-layout:fixed;'>
@@ -122,6 +126,7 @@
                     </div>
                 </div>
                 <div id='calc2' style='display: inline-block; width: 340px;'>
+                    <div style='text-align: center;'>2번 캐릭터</div>
                     <div id='input'>
                         <table style='table-layout:fixed;'>
                             <col width="200px" />
@@ -158,7 +163,7 @@
                                 <td><input id='dongsuk' value='200'></td>
                             </tr>
                         </table>
-                        <button style='width: 324px;' onclick='exec(2);'>전투력 계산</button>
+                        <button style='width: 324px;' onclick='exec(2);'>2번 캐릭터 전투력 계산</button>
                     </div>
                     <div id='output'>
                         <table style='table-layout:fixed;'>
