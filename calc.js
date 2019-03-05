@@ -159,13 +159,24 @@ function calcdmg(boss, atk, add, alr, bal, cri, dongsuk, swordl, spearl) {
 }
 
 function compare() {
-    let critdmg1 = document.querySelector('#calc1 input#critdmg').value * 1;
-    let critdmg2 = document.querySelector('#calc2 input#critdmg').value * 1;
+    let comptype;
+    if(document.querySelector('#compcrit').checked) comptype = 'crit';
+    else if(document.querySelector('#compnocrit').checked) comptype = 'nocrit';
+
+    let dmg1, dmg2;
+    if(comptype == 'crit'){
+        dmg1 = document.querySelector('#calc1 input#critdmg').value * 1;
+        dmg2 = document.querySelector('#calc2 input#critdmg').value * 1;
+    } else if(comptype == 'nocrit'){
+        dmg1 = document.querySelector('#calc1 input#nocritdmg').value * 1;
+        dmg2 = document.querySelector('#calc2 input#nocritdmg').value * 1;
+    }
+    
     let inputdeal1 = document.querySelector('#compare #input input#deal1').value * 1;
     let inputdeal2 = document.querySelector('#compare #input input#deal2').value * 1;
 
-    let samespecdeal1 = inputdeal1 * 100000 / critdmg1;
-    let samespecdeal2 = inputdeal2 * 100000 / critdmg2;
+    let samespecdeal1 = inputdeal1 * 100000 / dmg1;
+    let samespecdeal2 = inputdeal2 * 100000 / dmg2;
 
     let outputdeal1 = samespecdeal1 / (samespecdeal1 + samespecdeal2) * 100;
     let outputdeal2 = samespecdeal2 / (samespecdeal1 + samespecdeal2) * 100;
