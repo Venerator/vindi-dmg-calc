@@ -2,19 +2,33 @@
 <html>
     <head>
         <title>마영전 데미지 계산기</title>
-        <meta name="viewport" content="width=360, initial-scale=1">
+        <meta name="viewport" content="width=645">
         <script src="calc.js"></script>
+        <style>
+            select {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            input {
+                width: calc(100% - 4px);
+                margin: 0;
+                padding: 0;
+            }
+        </style>
     </head>
     <body>
-        <div id='calc' style='width: 360px;'>
-            <div id='input'>
-                <table style='table-layout:fixed;'>
+        <div class='container' style='width: fit-content;'>
+            <div id='header' style='text-align: center; font-size: 30px; font-weight: bold;'>마영전 데미지 계산기</div>
+            <hr>
+            <div id='calc' style='width: fit-content; margin: 0; padding: 0;'>
+                <table style='table-layout:fixed; margin: 0 auto;'>
                     <col width="180px" />
                     <col width="120px" />
                     <tr>
                         <td nowrap>대상 (보스)</td>
                         <td>
-                            <select id="boss" style='width:100%;' onchange="if(this.value == 'custom') {document.querySelectorAll('.customstat')[0].style.display='';document.querySelectorAll('.customstat')[1].style.display='';} else {document.querySelectorAll('.customstat')[0].style.display='none';document.querySelectorAll('.customstat')[1].style.display='none';}">
+                            <select id="boss" onchange="if(this.value == 'custom') {document.querySelectorAll('.customstat')[0].style.display='';document.querySelectorAll('.customstat')[1].style.display='';} else {document.querySelectorAll('.customstat')[0].style.display='none';document.querySelectorAll('.customstat')[1].style.display='none';}">
                                 <option label="6종" value="lvl90raids"></option>
                                 <option label="듀라한" value="dullahan"></option>
                                 <option label="에스 시더" value="aessidhe"></option>
@@ -41,42 +55,142 @@
                         <td nowrap>보스 크리티컬 저항</td>
                         <td><input id='bossres' value='0'></td>
                     </tr>
-                    <tr>
-                        <td nowrap>공격력</td>
-                        <td><input id='atk' value='0'></td>
-                    </tr>
-                    <tr>
-                        <td nowrap>추가피해</td>
-                        <td><input id='add' value='0'></td>
-                    </tr>
-                    <tr>
-                        <td nowrap>공격력 제한 해제</td>
-                        <td><input id='alr' value='0'></td>
-                    </tr>
-                    <tr>
-                        <td nowrap>밸런스</td>
-                        <td><input id='bal' value='0'></td>
-                    </tr>
-                    <tr>
-                        <td nowrap>크리티컬</td>
-                        <td><input id='cri' value='0'></td>
-                    </tr>
                 </table>
-                <button style='width: 100%;' onclick='calc();'>계산</button>
+                <hr>
+                <div id='calc1' style='display: inline-block; width: 320px;'>
+                    <div id='input'>
+                        <table style='table-layout:fixed;'>
+                            <col width="180px" />
+                            <col width="120px" />
+                            <tr>
+                                <td nowrap>공격력</td>
+                                <td><input id='atk' value='0'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>추가피해</td>
+                                <td><input id='add' value='0'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>공격력 제한 해제</td>
+                                <td><input id='alr' value='0'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>밸런스</td>
+                                <td><input id='bal' value='0'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>크리티컬</td>
+                                <td><input id='cri' value='0'></td>
+                            </tr>
+                        </table>
+                        <button style='width: 304px;' onclick='exec();'>전투력 계산</button>
+                    </div>
+                    <div id='output'>
+                        <table style='table-layout:fixed;'>
+                            <col width="180px" />
+                            <col width="120px" />
+                            <tr>
+                                <td nowrap>유효전투력(크리 미적용)</td>
+                                <td><input id='nocritdmg'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>유효전투력(크리 적용)</td>
+                                <td><input id='critdmg'></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id='calc2' style='display: inline-block; width: 320px;'>
+                    <div id='input'>
+                        <table style='table-layout:fixed;'>
+                            <col width="180px" />
+                            <col width="120px" />
+                            <tr>
+                                <td nowrap>공격력</td>
+                                <td><input id='atk' value='0'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>추가피해</td>
+                                <td><input id='add' value='0'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>공격력 제한 해제</td>
+                                <td><input id='alr' value='0'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>밸런스</td>
+                                <td><input id='bal' value='0'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>크리티컬</td>
+                                <td><input id='cri' value='0'></td>
+                            </tr>
+                        </table>
+                        <button style='width: 304px;' onclick='exec();'>전투력 계산</button>
+                    </div>
+                    <div id='output'>
+                        <table style='table-layout:fixed;'>
+                            <col width="180px" />
+                            <col width="120px" />
+                            <tr>
+                                <td nowrap>유효전투력(크리 미적용)</td>
+                                <td><input id='nocritdmg'></td>
+                            </tr>
+                            <tr>
+                                <td nowrap>유효전투력(크리 적용)</td>
+                                <td><input id='critdmg'></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div id='output'>
-                <table style='table-layout:fixed;'>
-                    <col width="180px" />
-                    <col width="120px" />
-                    <tr>
-                        <td nowrap>유효전투력(크리 미적용)</td>
-                        <td><input id='nocritdmg' readonly></td>
-                    </tr>
-                    <tr>
-                        <td nowrap>유효전투력(크리 적용)</td>
-                        <td><input id='critdmg' readonly></td>
-                    </tr>
-                </table>
+            <hr>
+            <div id='compare' style='width: fit-content; margin: 0; padding: 0;'>
+                <div id='input'>
+                    <div id='comp1' style='display: inline-block; width: 320px;'>
+                        <table style='table-layout:fixed;'>
+                                <col width="180px" />
+                                <col width="120px" />
+                                <tr>
+                                    <td nowrap>미터기 딜량</td>
+                                    <td nowrap><input id='deal1' value='50'>%</td>
+                                </tr>
+                        </table>
+                    </div>
+                    <div id='comp2' style='display: inline-block; width: 320px;'>
+                        <table style='table-layout:fixed;'>
+                                <col width="180px" />
+                                <col width="120px" />
+                                <tr>
+                                    <td nowrap>미터기 딜량</td>
+                                    <td nowrap><input id='deal2' value='50'>%</td>
+                                </tr>
+                        </table>
+                    </div>
+                    <button style='display: block; width: 100%;' onclick='compare();'>동스펙 2인 플레이 딜량 비교</button>
+                </div>
+                <div id='output'>
+                    <div id='comp1' style='display: inline-block; width: 320px;'>
+                        <table style='table-layout:fixed;'>
+                                <col width="180px" />
+                                <col width="120px" />
+                                <tr>
+                                    <td nowrap>동스펙 2인팟 딜량</td>
+                                    <td nowrap><input id='deal1'>%</td>
+                                </tr>
+                        </table>
+                    </div>
+                    <div id='comp2' style='display: inline-block; width: 320px;'>
+                        <table style='table-layout:fixed;'>
+                                <col width="180px" />
+                                <col width="120px" />
+                                <tr>
+                                    <td nowrap>동스펙 2인팟 딜량</td>
+                                    <td nowrap><input id='deal2'>%</td>
+                                </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
