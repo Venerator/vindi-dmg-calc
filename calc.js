@@ -56,7 +56,10 @@ const bossstat = {
         res: 145
     }
 }
-function calc(){
+
+function exec() {
+    target = event.target.parentElement.parentElement;
+
     let boss;
     if(document.querySelector('select#boss').value == 'custom')
         boss = {
@@ -65,22 +68,29 @@ function calc(){
         };
     else
         boss = bossstat[document.querySelector('select#boss').value];
-    let atk = document.querySelector('input#atk').value * 1;
-    let add = document.querySelector('input#add').value * 1;
-    let alr = document.querySelector('input#alr').value * 1;
-    let bal = document.querySelector('input#bal').value * 1;
-    let cri = document.querySelector('input#cri').value * 1;
+    let atk = target.querySelector('input#atk').value * 1;
+    let add = target.querySelector('input#add').value * 1;
+    let alr = target.querySelector('input#alr').value * 1;
+    let bal = target.querySelector('input#bal').value * 1;
+    let cri = target.querySelector('input#cri').value * 1;
 
+    dmg = calcdmg(boss, atk, add, alr, bal, cri);
+    
+
+    target.querySelector('input#nocritdmg').value = Math.round(dmg[0] * 100) / 100;
+    target.querySelector('input#critdmg').value = Math.round(dmg[1] * 100) / 100;
+}
+
+function calcdmg(boss, atk, add, alr, bal, cri) {
     let att = Math.max(Math.min(10000 + alr, atk - boss.def), 0);
     let base;
-    // if(att <= boss.def){
-    //     let x = (att - def + 900) / (def + 900);
-    //     let fx = 0.1856 + 0.5525 * x + 0.4214 * Math.pow(x , 2) - 0.3094 * Math.pow(x , 3) + 0.3643 * Math.pow(x , 4) - 0.2144 * Math.pow(x , 5);
-    //     base = (def + 900) * fx;
-    // }
-    let x = (att + 900) / (boss.def + 900);
-    let fx = 0.1856 + 0.5525 * x + 0.4214 * Math.pow(x , 2) - 0.3094 * Math.pow(x , 3) + 0.3643 * Math.pow(x , 4) - 0.2144 * Math.pow(x , 5);
-    base = (boss.def + 900) * fx;
+    if(att <= (boss.def * 2)){
+        let x = (att + 900) / (boss.def + 900);
+        let fx = 0.1856 + 0.5525 * x + 0.4214 * Math.pow(x , 2) - 0.3094 * Math.pow(x , 3) + 0.3643 * Math.pow(x , 4) - 0.2144 * Math.pow(x , 5);
+        base = (boss.def + 900) * fx;
+    } else {
+        base = (boss.def + 900) + (att-2 * boss.def);
+    }
 
     let adm;
     if(att <= 3000)
@@ -94,7 +104,22 @@ function calc(){
     
     let nocritdmg = (base + add * adm) * (bal + 100) / 200;
     let critdmg = nocritdmg * (1.95 * (effcrit / 100) + 1 * ((100 - effcrit) / 100));
+    
+    return [nocritdmg, critdmg];
+}
 
-    document.querySelector('input#nocritdmg').value = Math.round(nocritdmg * 100) / 100;
-    document.querySelector('input#critdmg').value = Math.round(critdmg * 100) / 100;
+function compare() {
+    let critdmg1 = document.querySelector('#calc1 input#critdmg').value * 1;
+    let critdmg2 = document.querySelector('#calc2 input#critdmg').value * 1;
+    let inputdeal1 = document.querySelector('#compare #input input#deal1').value * 1;
+    let inputdeal2 = document.querySelector('#compare #input input#deal2').value * 1;
+
+    let samespecdeal1 = inputdeal1 / critdmg1;
+    let samespecdeal2 = inputdeal2 / critdmg2;
+
+    let outputdeal1 = samespecdeal1 / (samespecdeal1 + samespecdeal2) * 100;
+    let outputdeal2 = samespecdeal2 / (samespecdeal1 + samespecdeal2) * 100;
+
+    document.querySelector('#compare #output input#deal1').value = Math.round(outputdeal1 * 100) / 100;
+    document.querySelector('#compare #output input#deal2').value = Math.round(outputdeal2 * 100) / 100;
 }
