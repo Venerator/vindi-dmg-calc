@@ -91,11 +91,18 @@
                                 <td><input id='cri' value='0'></td>
                             </tr>
                             <tr>
+                                <td nowrap colspan="2" style="text-align: center;">
+                                    <label for='swordl1'>검시타</label><input style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox" id="swordl1" onchange="if(this.checked)document.querySelector('#spearl1').checked = false;">
+                                    &nbsp;&nbsp;
+                                    <label for='spearl1'>창시타</label><input style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox" id="spearl1" onchange="if(this.checked)document.querySelector('#swordl1').checked = false;">
+                                </td>
+                            </tr>
+                            <tr>
                                 <td nowrap>대항력</td>
                                 <td><input id='dongsuk' value='200'></td>
                             </tr>
                         </table>
-                        <button style='width: 304px;' onclick='exec();'>전투력 계산</button>
+                        <button style='width: 304px;' onclick='exec(1);'>전투력 계산</button>
                     </div>
                     <div id='output'>
                         <table style='table-layout:fixed;'>
@@ -138,11 +145,18 @@
                                 <td><input id='cri' value='0'></td>
                             </tr>
                             <tr>
+                                <td nowrap colspan="2" style="text-align: center;">
+                                    <label for='swordl2'>검시타</label><input style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox" id="swordl2" onchange="if(this.checked)document.querySelector('#spearl2').checked = false;">
+                                    &nbsp;&nbsp;
+                                    <label for='spearl2'>창시타</label><input style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox" id="spearl2" onchange="if(this.checked)document.querySelector('#swordl2').checked = false;">
+                                </td>
+                            </tr>
+                            <tr>
                                 <td nowrap>대항력</td>
                                 <td><input id='dongsuk' value='200'></td>
                             </tr>
                         </table>
-                        <button style='width: 304px;' onclick='exec();'>전투력 계산</button>
+                        <button style='width: 304px;' onclick='exec(2);'>전투력 계산</button>
                     </div>
                     <div id='output'>
                         <table style='table-layout:fixed;'>
@@ -207,6 +221,12 @@
                         </table>
                     </div>
                 </div>
+            </div>
+            <hr>
+            <div id='footer' style='margin-left: 55px; font-size: 15px; font-weight: bold;'>
+                동스펙 딜량 비교 기능은 절대적인 비교가 아니며, 참고용으로만 써주세요.<br/>
+                특히, 리시타나 블래스터 카록의 경우 크리티컬 확률 수치에 따른 데미지 효율이<br/>
+                타 캐릭과 매우 다르므로 동스펙 비교 기능을 이용하는 의미가 없습니다.
             </div>
         </div>
     </body>
