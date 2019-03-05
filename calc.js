@@ -85,7 +85,7 @@ const bossstat = {
     }
 }
 
-function exec() {
+function exec(num) {
     target = event.target.parentElement.parentElement;
 
     let boss;
@@ -104,15 +104,24 @@ function exec() {
     let bal = target.querySelector('input#bal').value * 1;
     let cri = target.querySelector('input#cri').value * 1;
     let dongsuk = target.querySelector('input#dongsuk').value * 1;
+    let swordl;
+    let spearl;
+    if(num == 1) {
+        swordl = document.querySelector('#swordl1').checked;
+        spearl = document.querySelector('#spearl1').checked;
+    } else if (num == 2) {
+        swordl = document.querySelector('#swordl2').checked;
+        spearl = document.querySelector('#spearl2').checked;
+    }
 
-    dmg = calcdmg(boss, atk, add, alr, bal, cri, dongsuk);
+    dmg = calcdmg(boss, atk, add, alr, bal, cri, dongsuk, swordl, spearl);
     
 
     target.querySelector('input#nocritdmg').value = Math.round(dmg[0] * 100) / 100;
     target.querySelector('input#critdmg').value = Math.round(dmg[1] * 100) / 100;
 }
 
-function calcdmg(boss, atk, add, alr, bal, cri, dongsuk) {
+function calcdmg(boss, atk, add, alr, bal, cri, dongsuk, swordl, spearl) {
     let att = Math.max(Math.min(10000 + alr, atk - boss.def), 0);
     let base;
     if(att <= (boss.def * 2)){
@@ -131,7 +140,10 @@ function calcdmg(boss, atk, add, alr, bal, cri, dongsuk) {
     else
         adm = 6.25 + (att - 10000) / 2400;
 
-    let effcrit = Math.max(Math.min(50, cri - boss.res), 3);
+    let effcrit;
+    if(swordl) effcrit = Math.max(Math.min(65, cri + 15 - boss.res), 3);
+    else if(spearl) effcrit = Math.max(Math.min(65, cri + 22 - boss.res), 3);
+    else effcrit = Math.max(Math.min(50, cri - boss.res), 3);
     
     let nocritdmg = (base + add * adm) * (bal + 100) / 200;
     if(boss.dongsukres > 0){
@@ -139,7 +151,9 @@ function calcdmg(boss, atk, add, alr, bal, cri, dongsuk) {
         nocritdmg = nocritdmg * ddm;
     }
 
-    let critdmg = nocritdmg * (1.95 * (effcrit / 100) + 1 * ((100 - effcrit) / 100));
+    let critdmg;
+    if(swordl) critdmg = nocritdmg * (2.25 * (effcrit / 100) + 1 * ((100 - effcrit) / 100));
+    else critdmg = nocritdmg * (1.95 * (effcrit / 100) + 1 * ((100 - effcrit) / 100));
     
     return [nocritdmg, critdmg];
 }
