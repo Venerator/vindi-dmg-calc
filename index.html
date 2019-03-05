@@ -23,9 +23,9 @@
         <div class='container' style='width: fit-content;'>
             <div id='header' style='text-align: center; font-size: 30px; font-weight: bold;'>마영전 데미지 계산기</div>
             <hr>
-            <div id='calc' style='width: 650px; margin: 0; padding: 0;'>
+            <div id='calc' style='width: 690px; margin: 0; padding: 0;'>
                 <table style='table-layout:fixed; margin: 0 auto;'>
-                    <col width="180px" />
+                    <col width="200px" />
                     <col width="120px" />
                     <tr>
                         <td nowrap>대상 (보스)</td>
@@ -67,10 +67,10 @@
                     </tr>
                 </table>
                 <hr>
-                <div id='calc1' style='display: inline-block; width: 320px;'>
+                <div id='calc1' style='display: inline-block; width: 340px;'>
                     <div id='input'>
                         <table style='table-layout:fixed;'>
-                            <col width="180px" />
+                            <col width="200px" />
                             <col width="120px" />
                             <tr>
                                 <td nowrap>공격력</td>
@@ -104,27 +104,27 @@
                                 <td><input id='dongsuk' value='200'></td>
                             </tr>
                         </table>
-                        <button style='width: 304px;' onclick='exec(1);'>전투력 계산</button>
+                        <button style='width: 324px;' onclick='exec(1);'>전투력 계산</button>
                     </div>
                     <div id='output'>
                         <table style='table-layout:fixed;'>
-                            <col width="180px" />
+                            <col width="200px" />
                             <col width="120px" />
                             <tr>
-                                <td nowrap>유효전투력(크리 미적용)</td>
-                                <td><input id='nocritdmg'></td>
+                                <td nowrap>유효전투력 (크리 미적용)</td>
+                                <td nowrap><input id='nocritdmg'><input style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox" id="compnocrit" onchange="document.querySelector('#compcrit').checked = !(this.checked);"></td>
                             </tr>
                             <tr>
-                                <td nowrap>유효전투력(크리 적용)</td>
-                                <td><input id='critdmg'></td>
+                                <td nowrap>유효전투력 (크리 적용)</td>
+                                <td nowrap><input id='critdmg'><input style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox" id="compcrit" checked onchange="document.querySelector('#compnocrit').checked = !(this.checked);"></td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                <div id='calc2' style='display: inline-block; width: 320px;'>
+                <div id='calc2' style='display: inline-block; width: 340px;'>
                     <div id='input'>
                         <table style='table-layout:fixed;'>
-                            <col width="180px" />
+                            <col width="200px" />
                             <col width="120px" />
                             <tr>
                                 <td nowrap>공격력</td>
@@ -158,18 +158,18 @@
                                 <td><input id='dongsuk' value='200'></td>
                             </tr>
                         </table>
-                        <button style='width: 304px;' onclick='exec(2);'>전투력 계산</button>
+                        <button style='width: 324px;' onclick='exec(2);'>전투력 계산</button>
                     </div>
                     <div id='output'>
                         <table style='table-layout:fixed;'>
-                            <col width="180px" />
+                            <col width="200px" />
                             <col width="120px" />
                             <tr>
-                                <td nowrap>유효전투력(크리 미적용)</td>
+                                <td nowrap>유효전투력 (크리 미적용)</td>
                                 <td><input id='nocritdmg'></td>
                             </tr>
                             <tr>
-                                <td nowrap>유효전투력(크리 적용)</td>
+                                <td nowrap>유효전투력 (크리 적용)</td>
                                 <td><input id='critdmg'></td>
                             </tr>
                         </table>
@@ -177,47 +177,47 @@
                 </div>
             </div>
             <hr>
-            <div id='compare' style='width: 650px; margin: 0; padding: 0;'>
+            <div id='compare' style='width: 690px; margin: 0; padding: 0;'>
                 <div id='input'>
-                    <div id='comp1' style='display: inline-block; width: 320px;'>
+                    <div id='comp1' style='display: inline-block; width: 340px;'>
                         <table style='table-layout:fixed;'>
-                                <col width="180px" />
+                                <col width="200px" />
                                 <col width="120px" />
                                 <tr>
-                                    <td nowrap>미터기 딜량</td>
+                                    <td nowrap>보정 전 미터기 딜량</td>
                                     <td nowrap><input id='deal1' value='50'>%</td>
                                 </tr>
                         </table>
                     </div>
-                    <div id='comp2' style='display: inline-block; width: 320px;'>
+                    <div id='comp2' style='display: inline-block; width: 340px;'>
                         <table style='table-layout:fixed;'>
-                                <col width="180px" />
+                                <col width="200px" />
                                 <col width="120px" />
                                 <tr>
-                                    <td nowrap>미터기 딜량</td>
+                                    <td nowrap>보정 전 미터기 딜량</td>
                                     <td nowrap><input id='deal2' value='50'>%</td>
                                 </tr>
                         </table>
                     </div>
-                    <button style='display: block; width: 100%;' onclick='compare();'>동스펙 2인 플레이 딜량 비교</button>
+                    <button style='display: block; width: 100%;' onclick='compare();'>선택한 유효전투력 기준으로 동스펙 2인 플레이시 딜량 보정해보기</button>
                 </div>
                 <div id='output'>
-                    <div id='comp1' style='display: inline-block; width: 320px;'>
+                    <div id='comp1' style='display: inline-block; width: 340px;'>
                         <table style='table-layout:fixed;'>
-                                <col width="180px" />
+                                <col width="200px" />
                                 <col width="120px" />
                                 <tr>
-                                    <td nowrap>동스펙 2인팟 딜량</td>
+                                    <td nowrap>보정 후 딜량</td>
                                     <td nowrap><input id='deal1'>%</td>
                                 </tr>
                         </table>
                     </div>
-                    <div id='comp2' style='display: inline-block; width: 320px;'>
+                    <div id='comp2' style='display: inline-block; width: 340px;'>
                         <table style='table-layout:fixed;'>
-                                <col width="180px" />
+                                <col width="200px" />
                                 <col width="120px" />
                                 <tr>
-                                    <td nowrap>동스펙 2인팟 딜량</td>
+                                    <td nowrap>보정 후 딜량</td>
                                     <td nowrap><input id='deal2'>%</td>
                                 </tr>
                         </table>
@@ -225,7 +225,7 @@
                 </div>
             </div>
             <hr>
-            <div id='footer' style='margin-left: 55px; font-size: 15px; font-weight: bold;'>
+            <div id='footer' style='margin-left: 75px; font-size: 15px; font-weight: bold;'>
                 동스펙 딜량 비교 기능은 절대적인 비교가 아니며, 참고용으로만 써주세요.<br/>
                 특히, 리시타나 블래스터 카록의 경우 크리티컬 확률 수치에 따른 데미지 효율이<br/>
                 타 캐릭과 매우 다르므로 동스펙 비교 기능을 이용하는 의미가 없습니다.
