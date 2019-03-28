@@ -30,37 +30,37 @@ const bossstat = {
         dongsukmindmg: 100
     },
     claire: {
-        def: 24000,
+        def: 23000,
         res: 125,
         dongsukres: 5,
         dongsukmindmg: 30
     },
     elchulus: {
-        def: 26000,
+        def: 24000,
         res: 127,
         dongsukres: 10,
         dongsukmindmg: 20
     },
     macha: {
-        def: 27000,
+        def: 25000,
         res: 130,
         dongsukres: 30,
         dongsukmindmg: 10
     },
     agares: {
-        def: 28000,
+        def: 26000,
         res: 131,
         dongsukres: 40,
         dongsukmindmg: 10
     },
     lugh: {
-        def: 28500,
+        def: 26500,
         res: 132,
         dongsukres: 45,
         dongsukmindmg: 10
     },
     special: {
-        def: 26000,
+        def: 24000,
         res: 127,
         dongsukres: 20,
         dongsukmindmg: 10
