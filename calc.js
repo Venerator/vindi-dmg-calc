@@ -209,7 +209,7 @@ function timecalc(num) {
         spearl = document.querySelector('#spearl2').checked;
     }
 
-    let dmg, fullspecdmg, inputtime, fullspectime;
+    let dmg, fullspecdmg, inputtime, fullspectime, timedeal;
     
     if(num == 1) {
         if(comptype == 'crit'){
@@ -220,6 +220,7 @@ function timecalc(num) {
             fullspecdmg = calcdmg(boss, 99999, 6000, 3350, 90, 999, 999, swordl, spearl)[0];
         }
         inputtime = document.querySelector('#timecalc #input input#min1').value * 1 + document.querySelector('#timecalc #input input#sec1').value * 1 / 60;
+        timedeal = document.querySelector('#timecalc #input input#timedeal1').value * 1;
     } else if (num == 2) {
         if(comptype == 'crit'){
             dmg = document.querySelector('#calc2 input#critdmg').value * 1;
@@ -229,13 +230,14 @@ function timecalc(num) {
             fullspecdmg = calcdmg(boss, 99999, 6000, 3350, 90, 999, 999, swordl, spearl)[0];
         }
         inputtime = document.querySelector('#timecalc #input input#min2').value * 1 + document.querySelector('#timecalc #input input#sec2').value * 1 / 60;
+        timedeal = document.querySelector('#timecalc #input input#timedeal2').value * 1;
     }
 
-    fullspectime = inputtime * dmg / fullspecdmg;
+    fullspectime = inputtime * dmg / fullspecdmg * 100 / timedeal;
 
     fullspecmin = Math.floor(fullspectime);
     fullspecsec = Math.round((fullspectime - fullspecmin) * 60);
-    fullspecdpm = Math.round((10000 / fullspectime)) / 100;
+    fullspecdpm = Math.round((100 / fullspectime * 100)) / 100;
 
     if(num == 1) {
         document.querySelector('#timecalc #output input#min1').value = fullspecmin;
