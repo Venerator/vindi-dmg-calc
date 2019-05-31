@@ -184,3 +184,66 @@ function compare() {
     document.querySelector('#compare #output input#deal1').value = Math.round(outputdeal1 * 100) / 100;
     document.querySelector('#compare #output input#deal2').value = Math.round(outputdeal2 * 100) / 100;
 }
+
+function timecalc(num) {
+    let comptype;
+    if(document.querySelector('#compcrit').checked) comptype = 'crit';
+    else if(document.querySelector('#compnocrit').checked) comptype = 'nocrit';
+
+    let boss;
+    let swordl, spearl;
+    if(document.querySelector('select#boss').value == 'custom')
+        boss = {
+            def: document.querySelector('input#bossdef').value * 1,
+            res: document.querySelector('input#bossres').value * 1,
+            dongsukres: document.querySelector('input#bossdongsukres').value * 1,
+            dongsukmindmg: document.querySelector('input#bossdongsukmindmg').value * 1
+        };
+    else
+        boss = bossstat[document.querySelector('select#boss').value];
+    if(num == 1) {
+        swordl = document.querySelector('#swordl1').checked;
+        spearl = document.querySelector('#spearl1').checked;
+    } else if (num == 2) {
+        swordl = document.querySelector('#swordl2').checked;
+        spearl = document.querySelector('#spearl2').checked;
+    }
+
+    let dmg, fullspecdmg, inputtime, fullspectime;
+    
+    if(num == 1) {
+        if(comptype == 'crit'){
+            dmg = document.querySelector('#calc1 input#critdmg').value * 1;
+            fullspecdmg = calcdmg(boss, 99999, 6000, 3350, 90, 999, 999, swordl, spearl)[1];
+        } else if(comptype == 'nocrit'){
+            dmg = document.querySelector('#calc1 input#nocritdmg').value * 1;
+            fullspecdmg = calcdmg(boss, 99999, 6000, 3350, 90, 999, 999, swordl, spearl)[0];
+        }
+        inputtime = document.querySelector('#timecalc #input input#min1').value * 1 + document.querySelector('#timecalc #input input#sec1').value * 1 / 60;
+    } else if (num == 2) {
+        if(comptype == 'crit'){
+            dmg = document.querySelector('#calc2 input#critdmg').value * 1;
+            fullspecdmg = calcdmg(boss, 99999, 6000, 3350, 90, 999, 999, swordl, spearl)[1];
+        } else if(comptype == 'nocrit'){
+            dmg = document.querySelector('#calc2 input#nocritdmg').value * 1;
+            fullspecdmg = calcdmg(boss, 99999, 6000, 3350, 90, 999, 999, swordl, spearl)[0];
+        }
+        inputtime = document.querySelector('#timecalc #input input#min2').value * 1 + document.querySelector('#timecalc #input input#sec2').value * 1 / 60;
+    }
+
+    fullspectime = inputtime * dmg / fullspecdmg;
+
+    fullspecmin = Math.floor(fullspectime);
+    fullspecsec = Math.round((fullspectime - fullspecmin) * 60);
+    fullspecdpm = Math.round((10000 / fullspectime)) / 100;
+
+    if(num == 1) {
+        document.querySelector('#timecalc #output input#min1').value = fullspecmin;
+        document.querySelector('#timecalc #output input#sec1').value = fullspecsec;
+        document.querySelector('#timecalc #output input#dpm1').value = fullspecdpm;
+    } else if (num == 2) {
+        document.querySelector('#timecalc #output input#min2').value = fullspecmin;
+        document.querySelector('#timecalc #output input#sec2').value = fullspecsec;
+        document.querySelector('#timecalc #output input#dpm2').value = fullspecdpm;
+    }
+}
