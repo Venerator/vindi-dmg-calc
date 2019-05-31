@@ -22,7 +22,7 @@
                 margin: 0;
                 padding: 0;
             }
-            input#dpm1, input#dpm2 {
+            input#timedeal1, input#timedeal2, input#dpm1, input#dpm2 {
                 width: calc(100% - 4px);
                 margin: 0;
                 padding: 0;
@@ -197,8 +197,20 @@
             <hr>
             <div id='footer' style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; text-align: center;'>
                 ↑&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-                비교할 전투력 기준을 선택해주세요.
+                아래 보정기를 사용하려면 우선 기준으로 삼을 전투력을 선택해주세요.
             </div>
+            <hr>
+            <hr>
+            <div id='appendix' style='text-align: center; font-size: 22px; font-weight: bold;'>마영전 데미지 보정기 <span style="color:red">(only 참고용)</span></div>
+            <hr>
+            <hr>
+            <div id='footer' style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; font-size: 14px; '>
+                <span style="color:red">보</span>정기의 결과값은 항상 실제와는 다를 수 있으며, 참고용으로만 써주세요.<br/>
+                <span style="color:red">대</span>부분의 경우 파티플과 솔플의 DPS가 다르므로 솔플 클탐은 재미로만 봐주세요.<br/>
+                <span style="color:red">또</span>한, 리시타나 블래스터 카록의 경우 크리티컬 확률 수치에 따른 데미지 효율이<br/>
+                타 캐릭과는 다르게 적용되기 때문에 동스펙 비교 기능이 의미없을 수 있습니다.<br/>
+            </div>
+            <hr>
             <hr>
             <div id='compare' style='width: 690px; margin: 0; padding: 0;'>
                 <div id='input'>
@@ -256,10 +268,14 @@
                             <col width="170px" />
                             <tr>
                                 <td nowrap>보정 전 클탐</td>
-                                <td nowrap><input id='min1' value='15'>분 <input id='sec1' value='00'>초</td>
+                                <td nowrap><input id='min1' value='30'>분 <input id='sec1' value='00'>초</td>
+                            </tr>
+                            <tr>
+                                <td nowrap>본인 딜량</td>
+                                <td nowrap><input id='timedeal1' value='100'>%</td>
                             </tr>
                         </table>
-                        <button style='display: block; width: 100%;' onclick='timecalc(1);'>6000/3350 스펙 기준 클탐, 분당딜 계산하기</button>
+                        <button style='display: block; width: 100%;' onclick='timecalc(1);'>풀스펙(6000/3350) 기준 분당딜, 솔플 클탐 계산하기</button>
                     </div>
                     <div id='time2' style='display: inline-block; width: 340px;'>
                         <table style='table-layout:fixed;'>
@@ -267,10 +283,14 @@
                             <col width="170px" />
                             <tr>
                                 <td nowrap>보정 전 클탐</td>
-                                <td nowrap><input id='min1' value='15'>분 <input id='sec1' value='00'>초</td>
+                                <td nowrap><input id='min1' value='30'>분 <input id='sec1' value='00'>초</td>
+                            </tr>
+                            <tr>
+                                <td nowrap>본인 딜량</td>
+                                <td nowrap><input id='timedeal2' value='100'>%</td>
                             </tr>
                         </table>
-                        <button style='display: block; width: 100%;' onclick='timecalc(2);'>6000/3350 스펙 기준 클탐, 분당딜 계산하기</button>
+                        <button style='display: block; width: 100%;' onclick='timecalc(2);'>풀스펙(6000/3350) 기준 분당딜, 솔플 클탐 계산하기</button>
                     </div>
                 </div>
                 <div id='output'>
@@ -279,12 +299,12 @@
                             <col width="150px" />
                             <col width="170px" />
                             <tr>
-                                <td nowrap>보정 후 클탐</td>
-                                <td nowrap><input id='min1' value=''>분 <input id='sec1' value=''>초</td>
-                            </tr>
-                            <tr>
                                 <td nowrap>보정 후 분당딜</td>
                                 <td nowrap><input id='dpm1' value=''>%</td>
+                            </tr>
+                            <tr>
+                                <td nowrap>└▶ 솔플 클탐</td>
+                                <td nowrap><input id='min1' value=''>분 <input id='sec1' value=''>초</td>
                             </tr>
                         </table>
                     </div>
@@ -293,12 +313,12 @@
                             <col width="150px" />
                             <col width="170px" />
                             <tr>
-                                <td nowrap>보정 후 클탐</td>
-                                <td nowrap><input id='min1' value=''>분 <input id='sec1' value=''>초</td>
-                            </tr>
-                            <tr>
                                 <td nowrap>보정 후 분당딜</td>
                                 <td nowrap><input id='dpm1' value=''>%</td>
+                            </tr>
+                            <tr>
+                                <td nowrap>└▶ 솔플 클탐</td>
+                                <td nowrap><input id='min1' value=''>분 <input id='sec1' value=''>초</td>
                             </tr>
                         </table>
                     </div>
@@ -306,10 +326,7 @@
             </div>
             <hr><hr>
             <div id='footer' style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold;'>
-                동스펙 딜량 비교 기능은 절대적인 비교가 아니며, 참고용으로만 써주세요.<br/>
-                특히, 리시타나 블래스터 카록의 경우 크리티컬 확률 수치에 따른 데미지 효율이<br/>
-                타 캐릭과는 다르게 적용되기 때문에 동스펙 비교 기능이 의미없을 수 있습니다.<br/>
-                계산식은 <a style="color: black;" href='http://www.inven.co.kr/board/heroes/2028/38144' target='blank'>http://www.inven.co.kr/board/heroes/2028/38144</a> 글 참고했습니다.
+                본 계산기의 데미지 계산식은 <a style="color: black;" href='http://www.inven.co.kr/board/heroes/2028/38144' target='blank'>http://www.inven.co.kr/boa...</a> 글을 참고했습니다.
             </div>
         </div>
     </body>
