@@ -17,6 +17,16 @@
                 margin: 0;
                 padding: 0;
             }
+            #timecalc input {
+                width: calc(50% - 20px);
+                margin: 0;
+                padding: 0;
+            }
+            input#dpm1, input#dpm2 {
+                width: calc(100% - 4px);
+                margin: 0;
+                padding: 0;
+            }
             tr td:first-child {
                 padding-left: 10px;
             }
@@ -233,6 +243,63 @@
                                     <td nowrap>보정 후 딜량</td>
                                     <td nowrap><input id='deal2'>%</td>
                                 </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id='timecalc' style='width: 690px; margin: 0; padding: 0;'>
+                <div id='input'>
+                    <div id='time1' style='display: inline-block; width: 340px;'>
+                        <table style='table-layout:fixed;'>
+                            <col width="150px" />
+                            <col width="170px" />
+                            <tr>
+                                <td nowrap>보정 전 클탐</td>
+                                <td nowrap><input id='min1' value='15'>분 <input id='sec1' value='00'>초</td>
+                            </tr>
+                        </table>
+                        <button style='display: block; width: 100%;' onclick='timecalc(1);'>6000/3350 스펙 기준 클탐, 분당딜 계산하기</button>
+                    </div>
+                    <div id='time2' style='display: inline-block; width: 340px;'>
+                        <table style='table-layout:fixed;'>
+                            <col width="150px" />
+                            <col width="170px" />
+                            <tr>
+                                <td nowrap>보정 전 클탐</td>
+                                <td nowrap><input id='min1' value='15'>분 <input id='sec1' value='00'>초</td>
+                            </tr>
+                        </table>
+                        <button style='display: block; width: 100%;' onclick='timecalc(2);'>6000/3350 스펙 기준 클탐, 분당딜 계산하기</button>
+                    </div>
+                </div>
+                <div id='output'>
+                    <div id='time1' style='display: inline-block; width: 340px;'>
+                        <table style='table-layout:fixed;'>
+                            <col width="150px" />
+                            <col width="170px" />
+                            <tr>
+                                <td nowrap>보정 후 클탐</td>
+                                <td nowrap><input id='min1' value=''>분 <input id='sec1' value=''>초</td>
+                            </tr>
+                            <tr>
+                                <td nowrap>보정 후 분당딜</td>
+                                <td nowrap><input id='dpm1' value=''>%</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id='time2' style='display: inline-block; width: 340px;'>
+                        <table style='table-layout:fixed;'>
+                            <col width="150px" />
+                            <col width="170px" />
+                            <tr>
+                                <td nowrap>보정 후 클탐</td>
+                                <td nowrap><input id='min1' value=''>분 <input id='sec1' value=''>초</td>
+                            </tr>
+                            <tr>
+                                <td nowrap>보정 후 분당딜</td>
+                                <td nowrap><input id='dpm1' value=''>%</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
