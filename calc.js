@@ -77,6 +77,12 @@ const bossstat = {
         dongsukres: 0,
         dongsukmindmg: 100
     },
+    brigit: {
+        def: 30000,
+        res: 150,
+        dongsukres: 0,
+        dongsukmindmg: 100
+    },
     hell: {
         def: 29000,
         res: 145,
