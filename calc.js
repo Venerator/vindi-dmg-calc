@@ -59,6 +59,18 @@ const bossstat = {
         dongsukres: 45,
         dongsukmindmg: 10
     },
+    selren: {
+        def: 27000,
+        res: 132,
+        dongsukres: 50,
+        dongsukmindmg: 10
+    },
+    marject: {
+        def: 27000,
+        res: 132,
+        dongsukres: 50,
+        dongsukmindmg: 10
+    },
     special: {
         def: 24000,
         res: 127,
