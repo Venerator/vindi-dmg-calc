@@ -119,7 +119,7 @@ function exec(num) {
     target = event.target.parentElement.parentElement;
 
     let boss;
-    if(document.querySelector('select#boss').value == 'custom')
+    if (document.querySelector('select#boss').value == 'custom')
         boss = {
             def: document.querySelector('input#bossdef').value * 1,
             res: document.querySelector('input#bossres').value * 1,
@@ -136,7 +136,7 @@ function exec(num) {
     let dongsuk = target.querySelector('input#dongsuk').value * 1;
     let swordl;
     let spearl;
-    if(num == 1) {
+    if (num == 1) {
         swordl = document.querySelector('#swordl1').checked;
         spearl = document.querySelector('#spearl1').checked;
     } else if (num == 2) {
@@ -145,7 +145,7 @@ function exec(num) {
     }
 
     dmg = calcdmg(boss, atk, add, alr, bal, cri, dongsuk, swordl, spearl);
-    
+
 
     target.querySelector('input#nocritdmg').value = Math.round(dmg[0] * 100) / 100;
     target.querySelector('input#critdmg').value = Math.round(dmg[1] * 100) / 100;
@@ -154,54 +154,54 @@ function exec(num) {
 function calcdmg(boss, atk, add, alr, bal, cri, dongsuk, swordl, spearl) {
     let att = Math.max(Math.min(10000 + alr, atk - boss.def), 0);
     let base;
-    if(att <= (boss.def * 2)){
+    if (att <= (boss.def * 2)) {
         let x = (att + 900) / (boss.def + 900);
-        let fx = 0.1856 + 0.5525 * x + 0.4214 * Math.pow(x , 2) - 0.3094 * Math.pow(x , 3) + 0.3643 * Math.pow(x , 4) - 0.2144 * Math.pow(x , 5);
+        let fx = 0.1856 + 0.5525 * x + 0.4214 * Math.pow(x, 2) - 0.3094 * Math.pow(x, 3) + 0.3643 * Math.pow(x, 4) - 0.2144 * Math.pow(x, 5);
         base = (boss.def + 900) * fx;
     } else {
-        base = (boss.def + 900) + (att-2 * boss.def);
+        base = (boss.def + 900) + (att - 2 * boss.def);
     }
 
     let adm;
-    if(att <= 3000)
+    if (att <= 3000)
         adm = 1.875;
-    else if(att <= 10000)
+    else if (att <= 10000)
         adm = 6.25 * att / 10000;
     else
         adm = 6.25 + (att - 10000) / 2400;
 
     let effcrit;
-    if(swordl) effcrit = Math.max(Math.min(65, cri + 15 - boss.res), 3);
-    else if(spearl) effcrit = Math.max(Math.min(65, cri + 22 - boss.res), 3);
+    if (swordl) effcrit = Math.max(Math.min(65, cri + 15 - boss.res), 3);
+    else if (spearl) effcrit = Math.max(Math.min(65, cri + 22 - boss.res), 3);
     else effcrit = Math.max(Math.min(50, cri - boss.res), 3);
-    
+
     let nocritdmg = (base + add * adm) * (bal + 100) / 200;
-    if(boss.dongsukres > 0){
+    if (boss.dongsukres > 0) {
         let ddm = Math.max(Math.min(dongsuk - boss.dongsukres, 100), boss.dongsukmindmg) / 100;
         nocritdmg = nocritdmg * ddm;
     }
 
     let critdmg;
-    if(swordl) critdmg = nocritdmg * (2.25 * (effcrit / 100) + 1 * ((100 - effcrit) / 100));
+    if (swordl) critdmg = nocritdmg * (2.25 * (effcrit / 100) + 1 * ((100 - effcrit) / 100));
     else critdmg = nocritdmg * (1.95 * (effcrit / 100) + 1 * ((100 - effcrit) / 100));
-    
+
     return [nocritdmg, critdmg];
 }
 
 function compare() {
     let comptype;
-    if(document.querySelector('#compcrit').checked) comptype = 'crit';
-    else if(document.querySelector('#compnocrit').checked) comptype = 'nocrit';
+    if (document.querySelector('#compcrit').checked) comptype = 'crit';
+    else if (document.querySelector('#compnocrit').checked) comptype = 'nocrit';
 
     let dmg1, dmg2;
-    if(comptype == 'crit'){
+    if (comptype == 'crit') {
         dmg1 = document.querySelector('#calc1 input#critdmg').value * 1;
         dmg2 = document.querySelector('#calc2 input#critdmg').value * 1;
-    } else if(comptype == 'nocrit'){
+    } else if (comptype == 'nocrit') {
         dmg1 = document.querySelector('#calc1 input#nocritdmg').value * 1;
         dmg2 = document.querySelector('#calc2 input#nocritdmg').value * 1;
     }
-    
+
     let inputdeal1 = document.querySelector('#compare #input input#deal1').value * 1;
     let inputdeal2 = document.querySelector('#compare #input input#deal2').value * 1;
 
@@ -217,12 +217,12 @@ function compare() {
 
 function timecalc(num) {
     let comptype;
-    if(document.querySelector('#compcrit').checked) comptype = 'crit';
-    else if(document.querySelector('#compnocrit').checked) comptype = 'nocrit';
+    if (document.querySelector('#compcrit').checked) comptype = 'crit';
+    else if (document.querySelector('#compnocrit').checked) comptype = 'nocrit';
 
     let boss;
     let swordl, spearl;
-    if(document.querySelector('select#boss').value == 'custom')
+    if (document.querySelector('select#boss').value == 'custom')
         boss = {
             def: document.querySelector('input#bossdef').value * 1,
             res: document.querySelector('input#bossres').value * 1,
@@ -231,7 +231,7 @@ function timecalc(num) {
         };
     else
         boss = bossstat[document.querySelector('select#boss').value];
-    if(num == 1) {
+    if (num == 1) {
         swordl = document.querySelector('#swordl1').checked;
         spearl = document.querySelector('#spearl1').checked;
     } else if (num == 2) {
@@ -240,22 +240,22 @@ function timecalc(num) {
     }
 
     let dmg, fullspecdmg, inputtime, fullspectime, timedeal;
-    
-    if(num == 1) {
-        if(comptype == 'crit'){
+
+    if (num == 1) {
+        if (comptype == 'crit') {
             dmg = document.querySelector('#calc1 input#critdmg').value * 1;
             fullspecdmg = calcdmg(boss, 99999, 6000, 3550, 90, 999, 999, swordl, spearl)[1];
-        } else if(comptype == 'nocrit'){
+        } else if (comptype == 'nocrit') {
             dmg = document.querySelector('#calc1 input#nocritdmg').value * 1;
             fullspecdmg = calcdmg(boss, 99999, 6000, 3550, 90, 999, 999, swordl, spearl)[0];
         }
         inputtime = document.querySelector('#timecalc #input input#min1').value * 1 + document.querySelector('#timecalc #input input#sec1').value * 1 / 60;
         timedeal = document.querySelector('#timecalc #input input#timedeal1').value * 1;
     } else if (num == 2) {
-        if(comptype == 'crit'){
+        if (comptype == 'crit') {
             dmg = document.querySelector('#calc2 input#critdmg').value * 1;
             fullspecdmg = calcdmg(boss, 99999, 6000, 3550, 90, 999, 999, swordl, spearl)[1];
-        } else if(comptype == 'nocrit'){
+        } else if (comptype == 'nocrit') {
             dmg = document.querySelector('#calc2 input#nocritdmg').value * 1;
             fullspecdmg = calcdmg(boss, 99999, 6000, 3550, 90, 999, 999, swordl, spearl)[0];
         }
@@ -269,7 +269,7 @@ function timecalc(num) {
     fullspecsec = Math.round((fullspectime - fullspecmin) * 60);
     fullspecdpm = Math.round((100 / fullspectime * 100)) / 100;
 
-    if(num == 1) {
+    if (num == 1) {
         document.querySelector('#timecalc #output input#min1').value = fullspecmin;
         document.querySelector('#timecalc #output input#sec1').value = fullspecsec;
         document.querySelector('#timecalc #output input#dpm1').value = fullspecdpm;

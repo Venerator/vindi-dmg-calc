@@ -1,338 +1,377 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>마영전 데미지 계산기</title>
-        <meta name="viewport" content="width=650">
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <script src="calc.js"></script>
-        <style>
-            select {
-                width: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            input {
-                width: calc(100% - 4px);
-                margin: 0;
-                padding: 0;
-            }
-            #timecalc input {
-                width: calc(50% - 20px);
-                margin: 0;
-                padding: 0;
-            }
-            input#timedeal1, input#timedeal2, input#dpm1, input#dpm2 {
-                width: calc(100% - 4px);
-                margin: 0;
-                padding: 0;
-            }
-            tr td:first-child {
-                padding-left: 10px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class='container' style='width: fit-content;'>
-            <hr>
-            <div id='header' style='text-align: center; font-size: 30px; font-weight: bold;'>마영전 데미지 계산기</div>
-            <hr><hr>
-            <div id='calc' style='width: 690px; margin: 0; padding: 0;'>
-                <table style='table-layout:fixed; margin: 0 auto;'>
-                    <col width="200px" />
-                    <col width="120px" />
-                    <tr>
-                        <td nowrap>대상 (보스)</td>
-                        <td>
-                            <select id="boss" onchange="if(this.value == 'custom') {document.querySelectorAll('.customstat').forEach(function(x){x.style.display='';});} else {document.querySelectorAll('.customstat').forEach(function(x){x.style.display='none';});}">
-                                <option label="6종" value="lvl90raids"></option>
-                                <option label="듀라한" value="dullahan"></option>
-                                <option label="에스 시더" value="aessidhe"></option>
-                                <option label="아르카나" value="arcana"></option>
-                                <option label="루파키투스" value="rupacitus"></option>
-                                <option label="클레르" value="claire"></option>
-                                <option label="폭주한 엘쿨루스" value="elchulus"></option>
-                                <option label="마하" value="macha"></option>
-                                <option label="아가레스" value="agares"></option>
-                                <option label="루(팔라라)" value="lugh"></option>
-                                <option label="셀렌" value="selren"></option>
-                                <option label="마르젝트" value="marject"></option>
-                                <option label="아이단" value="aodhan"></option>
-                                <option label="세자르" value="caesar"></option>
-                                <option label="스페셜 던전" value="special"></option>
-                                <option label="네반" value="neamhain"></option>
-                                <option label="발로르" value="balor" selected></option>
-                                <option label="브리지트" value="brigit"></option>
-                                <option label="[헬] 결사대" value="hell"></option>
-                                <option label="사용자 지정" value="custom"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr class='customstat' style='display: none;'>
-                        <td nowrap>보스 방어력</td>
-                        <td><input id='bossdef' value='0'></td>
-                    </tr>
-                    <tr class='customstat' style='display: none;'>
-                        <td nowrap>보스 크리티컬 저항</td>
-                        <td><input id='bossres' value='0'></td>
-                    </tr>
-                    <tr class='customstat' style='display: none;'>
-                        <td nowrap>보스 대항력 저항(0 = 대항력 미적용)</td>
-                        <td><input id='bossdongsukres' value='0'></td>
-                    </tr>
-                    <tr class='customstat' style='display: none;'>
-                        <td nowrap>대항력 보정 최소치(10 = 대항력이 낮아도 최소 10%의 데미지 적용)</td>
-                        <td><input id='bossdongsukmindmg' value='100'></td>
-                    </tr>
-                </table>
-                <hr><hr>
-                <div id='calc1' style='display: inline-block; width: 340px;'>
-                    <div style='text-align: center;'>1번 캐릭터</div>
-                    <div id='input'>
-                        <table style='table-layout:fixed;'>
-                            <col width="200px" />
-                            <col width="120px" />
-                            <tr>
-                                <td nowrap>공격력</td>
-                                <td><input id='atk' value='0'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap>추가피해</td>
-                                <td><input id='add' value='0'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap>공격력 제한 해제</td>
-                                <td><input id='alr' value='0'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap>밸런스</td>
-                                <td><input id='bal' value='90'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap>크리티컬</td>
-                                <td><input id='cri' value='0'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap colspan="2" style="text-align: center;">
-                                    <label for='swordl1'>검시타</label><input style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox" id="swordl1" onchange="if(this.checked)document.querySelector('#spearl1').checked = false;">
-                                    &nbsp;&nbsp;
-                                    <label for='spearl1'>창시타</label><input style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox" id="spearl1" onchange="if(this.checked)document.querySelector('#swordl1').checked = false;">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td nowrap>대항력</td>
-                                <td><input id='dongsuk' value='200'></td>
-                            </tr>
-                        </table>
-                        <hr>
-                        <button style='width: 324px;' onclick='exec(1);'>1번 캐릭터 전투력 계산</button>
-                    </div>
-                    <div id='output'>
-                        <table style='table-layout:fixed;'>
-                            <col width="200px" />
-                            <col width="120px" />
-                            <tr>
-                                <td nowrap>유효 전투력 (크리 미포함)</td>
-                                <td nowrap><input id='nocritdmg'><input style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox" id="compnocrit" onchange="document.querySelector('#compcrit').checked = !(this.checked);"></td>
-                            </tr>
-                            <tr>
-                                <td nowrap>유효 전투력 (크리 포함)</td>
-                                <td nowrap><input id='critdmg'><input style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox" id="compcrit" checked onchange="document.querySelector('#compnocrit').checked = !(this.checked);"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div id='calc2' style='display: inline-block; width: 340px;'>
-                    <div style='text-align: center;'>2번 캐릭터</div>
-                    <div id='input'>
-                        <table style='table-layout:fixed;'>
-                            <col width="200px" />
-                            <col width="120px" />
-                            <tr>
-                                <td nowrap>공격력</td>
-                                <td><input id='atk' value='0'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap>추가피해</td>
-                                <td><input id='add' value='0'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap>공격력 제한 해제</td>
-                                <td><input id='alr' value='0'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap>밸런스</td>
-                                <td><input id='bal' value='90'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap>크리티컬</td>
-                                <td><input id='cri' value='0'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap colspan="2" style="text-align: center;">
-                                    <label for='swordl2'>검시타</label><input style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox" id="swordl2" onchange="if(this.checked)document.querySelector('#spearl2').checked = false;">
-                                    &nbsp;&nbsp;
-                                    <label for='spearl2'>창시타</label><input style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox" id="spearl2" onchange="if(this.checked)document.querySelector('#swordl2').checked = false;">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td nowrap>대항력</td>
-                                <td><input id='dongsuk' value='200'></td>
-                            </tr>
-                        </table>
-                        <hr>
-                        <button style='width: 324px;' onclick='exec(2);'>2번 캐릭터 전투력 계산</button>
-                    </div>
-                    <div id='output'>
-                        <table style='table-layout:fixed;'>
-                            <col width="200px" />
-                            <col width="120px" />
-                            <tr>
-                                <td nowrap>유효 전투력 (크리 미포함)</td>
-                                <td><input id='nocritdmg'></td>
-                            </tr>
-                            <tr>
-                                <td nowrap>유효 전투력 (크리 포함)</td>
-                                <td><input id='critdmg'></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div id='footer' style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; text-align: center;'>
-                ↑&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-                아래 보정기를 사용하려면 우선 기준으로 삼을 전투력을 선택해주세요.
-            </div>
+
+<head>
+    <title>마영전 데미지 계산기</title>
+    <meta name="viewport" content="width=650">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="calc.js"></script>
+    <style>
+        select {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            width: calc(100% - 4px);
+            margin: 0;
+            padding: 0;
+        }
+
+        #timecalc input {
+            width: calc(50% - 20px);
+            margin: 0;
+            padding: 0;
+        }
+
+        input#timedeal1,
+        input#timedeal2,
+        input#dpm1,
+        input#dpm2 {
+            width: calc(100% - 4px);
+            margin: 0;
+            padding: 0;
+        }
+
+        tr td:first-child {
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='container' style='width: fit-content;'>
+        <hr>
+        <div id='header' style='text-align: center; font-size: 30px; font-weight: bold;'>마영전 데미지 계산기</div>
+        <hr>
+        <hr>
+        <div id='calc' style='width: 690px; margin: 0; padding: 0;'>
+            <table style='table-layout:fixed; margin: 0 auto;'>
+                <col width="200px" />
+                <col width="120px" />
+                <tr>
+                    <td nowrap>대상 (보스)</td>
+                    <td>
+                        <select id="boss"
+                            onchange="if(this.value == 'custom') {document.querySelectorAll('.customstat').forEach(function(x){x.style.display='';});} else {document.querySelectorAll('.customstat').forEach(function(x){x.style.display='none';});}">
+                            <option label="6종" value="lvl90raids"></option>
+                            <option label="듀라한" value="dullahan"></option>
+                            <option label="에스 시더" value="aessidhe"></option>
+                            <option label="아르카나" value="arcana"></option>
+                            <option label="루파키투스" value="rupacitus"></option>
+                            <option label="클레르" value="claire"></option>
+                            <option label="폭주한 엘쿨루스" value="elchulus"></option>
+                            <option label="마하" value="macha"></option>
+                            <option label="아가레스" value="agares"></option>
+                            <option label="루(팔라라)" value="lugh"></option>
+                            <option label="셀렌" value="selren"></option>
+                            <option label="마르젝트" value="marject"></option>
+                            <option label="아이단" value="aodhan"></option>
+                            <option label="세자르" value="caesar"></option>
+                            <option label="스페셜 던전" value="special"></option>
+                            <option label="네반" value="neamhain"></option>
+                            <option label="발로르" value="balor" selected></option>
+                            <option label="브리지트" value="brigit"></option>
+                            <option label="[헬] 결사대" value="hell"></option>
+                            <option label="사용자 지정" value="custom"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class='customstat' style='display: none;'>
+                    <td nowrap>보스 방어력</td>
+                    <td><input id='bossdef' value='0'></td>
+                </tr>
+                <tr class='customstat' style='display: none;'>
+                    <td nowrap>보스 크리티컬 저항</td>
+                    <td><input id='bossres' value='0'></td>
+                </tr>
+                <tr class='customstat' style='display: none;'>
+                    <td nowrap>보스 대항력 저항(0 = 대항력 미적용)</td>
+                    <td><input id='bossdongsukres' value='0'></td>
+                </tr>
+                <tr class='customstat' style='display: none;'>
+                    <td nowrap>대항력 보정 최소치(10 = 대항력이 낮아도 최소 10%의 데미지 적용)</td>
+                    <td><input id='bossdongsukmindmg' value='100'></td>
+                </tr>
+            </table>
             <hr>
             <hr>
-            <div id='appendix' style='text-align: center; font-size: 22px; font-weight: bold;'>마영전 데미지 보정기 <span style="color:red">(only 참고용)</span></div>
-            <hr>
-            <hr>
-            <div id='footer' style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; font-size: 14px; '>
-                <span style="color:red">보</span>정기의 결과값은 항상 실제와는 다를 수 있으며, 참고용으로만 써주세요.<br/>
-                <span style="color:red">대</span>부분의 경우 파티플과 솔플의 DPS가 다르므로 솔플 클탐은 재미로만 봐주세요.<br/>
-                <span style="color:red">또</span>한, 리시타나 블래스터 카록의 경우 크리티컬 확률 수치에 따른 데미지 효율이<br/>
-                타 캐릭과는 다르게 적용되기 때문에 동스펙 비교 기능이 의미없을 수 있습니다.<br/>
-            </div>
-            <hr>
-            <hr>
-            <div id='compare' style='width: 690px; margin: 0; padding: 0;'>
+            <div id='calc1' style='display: inline-block; width: 340px;'>
+                <div style='text-align: center;'>1번 캐릭터</div>
                 <div id='input'>
-                    <div id='comp1' style='display: inline-block; width: 340px;'>
-                        <table style='table-layout:fixed;'>
-                                <col width="200px" />
-                                <col width="120px" />
-                                <tr>
-                                    <td nowrap>보정 전 미터기 딜량</td>
-                                    <td nowrap><input id='deal1' value='50'>%</td>
-                                </tr>
-                        </table>
-                    </div>
-                    <div id='comp2' style='display: inline-block; width: 340px;'>
-                        <table style='table-layout:fixed;'>
-                                <col width="200px" />
-                                <col width="120px" />
-                                <tr>
-                                    <td nowrap>보정 전 미터기 딜량</td>
-                                    <td nowrap><input id='deal2' value='50'>%</td>
-                                </tr>
-                        </table>
-                    </div>
-                    <button style='display: block; width: 100%;' onclick='compare();'>선택한 유효전투력 기준으로 동스펙 2인 플레이시 딜량 보정해보기</button>
+                    <table style='table-layout:fixed;'>
+                        <col width="200px" />
+                        <col width="120px" />
+                        <tr>
+                            <td nowrap>공격력</td>
+                            <td><input id='atk' value='0'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap>추가피해</td>
+                            <td><input id='add' value='0'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap>공격력 제한 해제</td>
+                            <td><input id='alr' value='0'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap>밸런스</td>
+                            <td><input id='bal' value='90'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap>크리티컬</td>
+                            <td><input id='cri' value='0'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap colspan="2" style="text-align: center;">
+                                <label for='swordl1'>검시타</label><input
+                                    style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox"
+                                    id="swordl1"
+                                    onchange="if(this.checked)document.querySelector('#spearl1').checked = false;">
+                                &nbsp;&nbsp;
+                                <label for='spearl1'>창시타</label><input
+                                    style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox"
+                                    id="spearl1"
+                                    onchange="if(this.checked)document.querySelector('#swordl1').checked = false;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap>대항력</td>
+                            <td><input id='dongsuk' value='200'></td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <button style='width: 324px;' onclick='exec(1);'>1번 캐릭터 전투력 계산</button>
                 </div>
                 <div id='output'>
-                    <div id='comp1' style='display: inline-block; width: 340px;'>
-                        <table style='table-layout:fixed;'>
-                                <col width="200px" />
-                                <col width="120px" />
-                                <tr>
-                                    <td nowrap>보정 후 딜량</td>
-                                    <td nowrap><input id='deal1'>%</td>
-                                </tr>
-                        </table>
-                    </div>
-                    <div id='comp2' style='display: inline-block; width: 340px;'>
-                        <table style='table-layout:fixed;'>
-                                <col width="200px" />
-                                <col width="120px" />
-                                <tr>
-                                    <td nowrap>보정 후 딜량</td>
-                                    <td nowrap><input id='deal2'>%</td>
-                                </tr>
-                        </table>
-                    </div>
+                    <table style='table-layout:fixed;'>
+                        <col width="200px" />
+                        <col width="120px" />
+                        <tr>
+                            <td nowrap>유효 전투력 (크리 미포함)</td>
+                            <td nowrap><input id='nocritdmg'><input
+                                    style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox"
+                                    id="compnocrit"
+                                    onchange="document.querySelector('#compcrit').checked = !(this.checked);"></td>
+                        </tr>
+                        <tr>
+                            <td nowrap>유효 전투력 (크리 포함)</td>
+                            <td nowrap><input id='critdmg'><input
+                                    style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox"
+                                    id="compcrit" checked
+                                    onchange="document.querySelector('#compnocrit').checked = !(this.checked);"></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-            <hr>
-            <div id='timecalc' style='width: 690px; margin: 0; padding: 0;'>
+            <div id='calc2' style='display: inline-block; width: 340px;'>
+                <div style='text-align: center;'>2번 캐릭터</div>
                 <div id='input'>
-                    <div id='time1' style='display: inline-block; width: 340px;'>
-                        <table style='table-layout:fixed;'>
-                            <col width="150px" />
-                            <col width="170px" />
-                            <tr>
-                                <td nowrap>보정 전 클탐</td>
-                                <td nowrap><input id='min1' value='30'>분 <input id='sec1' value='00'>초</td>
-                            </tr>
-                            <tr>
-                                <td nowrap>본인 딜량</td>
-                                <td nowrap><input id='timedeal1' value='100'>%</td>
-                            </tr>
-                        </table>
-                        <button style='display: block; width: 100%;' onclick='timecalc(1);'>풀스펙(6000/3550) 기준 분당딜, 솔플 클탐 계산하기</button>
-                    </div>
-                    <div id='time2' style='display: inline-block; width: 340px;'>
-                        <table style='table-layout:fixed;'>
-                            <col width="150px" />
-                            <col width="170px" />
-                            <tr>
-                                <td nowrap>보정 전 클탐</td>
-                                <td nowrap><input id='min2' value='30'>분 <input id='sec2' value='00'>초</td>
-                            </tr>
-                            <tr>
-                                <td nowrap>본인 딜량</td>
-                                <td nowrap><input id='timedeal2' value='100'>%</td>
-                            </tr>
-                        </table>
-                        <button style='display: block; width: 100%;' onclick='timecalc(2);'>풀스펙(6000/3550) 기준 분당딜, 솔플 클탐 계산하기</button>
-                    </div>
+                    <table style='table-layout:fixed;'>
+                        <col width="200px" />
+                        <col width="120px" />
+                        <tr>
+                            <td nowrap>공격력</td>
+                            <td><input id='atk' value='0'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap>추가피해</td>
+                            <td><input id='add' value='0'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap>공격력 제한 해제</td>
+                            <td><input id='alr' value='0'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap>밸런스</td>
+                            <td><input id='bal' value='90'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap>크리티컬</td>
+                            <td><input id='cri' value='0'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap colspan="2" style="text-align: center;">
+                                <label for='swordl2'>검시타</label><input
+                                    style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox"
+                                    id="swordl2"
+                                    onchange="if(this.checked)document.querySelector('#spearl2').checked = false;">
+                                &nbsp;&nbsp;
+                                <label for='spearl2'>창시타</label><input
+                                    style='width: auto; vertical-align: middle; margin-left: 3px;' type="checkbox"
+                                    id="spearl2"
+                                    onchange="if(this.checked)document.querySelector('#swordl2').checked = false;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap>대항력</td>
+                            <td><input id='dongsuk' value='200'></td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <button style='width: 324px;' onclick='exec(2);'>2번 캐릭터 전투력 계산</button>
                 </div>
                 <div id='output'>
-                    <div id='time1' style='display: inline-block; width: 340px;'>
-                        <table style='table-layout:fixed;'>
-                            <col width="150px" />
-                            <col width="170px" />
-                            <tr>
-                                <td nowrap>보정 후 분당딜</td>
-                                <td nowrap><input id='dpm1' value=''>%</td>
-                            </tr>
-                            <tr>
-                                <td nowrap>└▶ 솔플 클탐</td>
-                                <td nowrap><input id='min1' value=''>분 <input id='sec1' value=''>초</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id='time2' style='display: inline-block; width: 340px;'>
-                        <table style='table-layout:fixed;'>
-                            <col width="150px" />
-                            <col width="170px" />
-                            <tr>
-                                <td nowrap>보정 후 분당딜</td>
-                                <td nowrap><input id='dpm2' value=''>%</td>
-                            </tr>
-                            <tr>
-                                <td nowrap>└▶ 솔플 클탐</td>
-                                <td nowrap><input id='min2' value=''>분 <input id='sec2' value=''>초</td>
-                            </tr>
-                        </table>
-                    </div>
+                    <table style='table-layout:fixed;'>
+                        <col width="200px" />
+                        <col width="120px" />
+                        <tr>
+                            <td nowrap>유효 전투력 (크리 미포함)</td>
+                            <td><input id='nocritdmg'></td>
+                        </tr>
+                        <tr>
+                            <td nowrap>유효 전투력 (크리 포함)</td>
+                            <td><input id='critdmg'></td>
+                        </tr>
+                    </table>
                 </div>
-            </div>
-            <hr><hr>
-            <div id='footer' style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold;'>
-                본 계산기의 데미지 계산식은 <a style="color: black;" href='http://www.inven.co.kr/board/heroes/2028/38144' target='blank'>http://www.inven.co.kr/boa...</a> 글을 참고했습니다.
             </div>
         </div>
-    </body>
+        <hr>
+        <div id='footer'
+            style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; text-align: center;'>
+            ↑&nbsp;&nbsp;&nbsp;&nbsp;<br />
+            아래 보정기를 사용하려면 우선 기준으로 삼을 전투력을 선택해주세요.
+        </div>
+        <hr>
+        <hr>
+        <div id='appendix' style='text-align: center; font-size: 22px; font-weight: bold;'>마영전 데미지 보정기 <span
+                style="color:red">(only 참고용)</span></div>
+        <hr>
+        <hr>
+        <div id='footer'
+            style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; font-size: 14px; '>
+            <span style="color:red">보</span>정기의 결과값은 항상 실제와는 다를 수 있으며, 참고용으로만 써주세요.<br />
+            <span style="color:red">대</span>부분의 경우 파티플과 솔플의 DPS가 다르므로 솔플 클탐은 재미로만 봐주세요.<br />
+            <span style="color:red">또</span>한, 리시타나 블래스터 카록의 경우 크리티컬 확률 수치에 따른 데미지 효율이<br />
+            타 캐릭과는 다르게 적용되기 때문에 동스펙 비교 기능이 의미없을 수 있습니다.<br />
+        </div>
+        <hr>
+        <hr>
+        <div id='compare' style='width: 690px; margin: 0; padding: 0;'>
+            <div id='input'>
+                <div id='comp1' style='display: inline-block; width: 340px;'>
+                    <table style='table-layout:fixed;'>
+                        <col width="200px" />
+                        <col width="120px" />
+                        <tr>
+                            <td nowrap>보정 전 미터기 딜량</td>
+                            <td nowrap><input id='deal1' value='50'>%</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id='comp2' style='display: inline-block; width: 340px;'>
+                    <table style='table-layout:fixed;'>
+                        <col width="200px" />
+                        <col width="120px" />
+                        <tr>
+                            <td nowrap>보정 전 미터기 딜량</td>
+                            <td nowrap><input id='deal2' value='50'>%</td>
+                        </tr>
+                    </table>
+                </div>
+                <button style='display: block; width: 100%;' onclick='compare();'>선택한 유효전투력 기준으로 동스펙 2인 플레이시 딜량
+                    보정해보기</button>
+            </div>
+            <div id='output'>
+                <div id='comp1' style='display: inline-block; width: 340px;'>
+                    <table style='table-layout:fixed;'>
+                        <col width="200px" />
+                        <col width="120px" />
+                        <tr>
+                            <td nowrap>보정 후 딜량</td>
+                            <td nowrap><input id='deal1'>%</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id='comp2' style='display: inline-block; width: 340px;'>
+                    <table style='table-layout:fixed;'>
+                        <col width="200px" />
+                        <col width="120px" />
+                        <tr>
+                            <td nowrap>보정 후 딜량</td>
+                            <td nowrap><input id='deal2'>%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id='timecalc' style='width: 690px; margin: 0; padding: 0;'>
+            <div id='input'>
+                <div id='time1' style='display: inline-block; width: 340px;'>
+                    <table style='table-layout:fixed;'>
+                        <col width="150px" />
+                        <col width="170px" />
+                        <tr>
+                            <td nowrap>보정 전 클탐</td>
+                            <td nowrap><input id='min1' value='30'>분 <input id='sec1' value='00'>초</td>
+                        </tr>
+                        <tr>
+                            <td nowrap>본인 딜량</td>
+                            <td nowrap><input id='timedeal1' value='100'>%</td>
+                        </tr>
+                    </table>
+                    <button style='display: block; width: 100%;' onclick='timecalc(1);'>풀스펙(6000/3550) 기준 분당딜, 솔플 클탐
+                        계산하기</button>
+                </div>
+                <div id='time2' style='display: inline-block; width: 340px;'>
+                    <table style='table-layout:fixed;'>
+                        <col width="150px" />
+                        <col width="170px" />
+                        <tr>
+                            <td nowrap>보정 전 클탐</td>
+                            <td nowrap><input id='min2' value='30'>분 <input id='sec2' value='00'>초</td>
+                        </tr>
+                        <tr>
+                            <td nowrap>본인 딜량</td>
+                            <td nowrap><input id='timedeal2' value='100'>%</td>
+                        </tr>
+                    </table>
+                    <button style='display: block; width: 100%;' onclick='timecalc(2);'>풀스펙(6000/3550) 기준 분당딜, 솔플 클탐
+                        계산하기</button>
+                </div>
+            </div>
+            <div id='output'>
+                <div id='time1' style='display: inline-block; width: 340px;'>
+                    <table style='table-layout:fixed;'>
+                        <col width="150px" />
+                        <col width="170px" />
+                        <tr>
+                            <td nowrap>보정 후 분당딜</td>
+                            <td nowrap><input id='dpm1' value=''>%</td>
+                        </tr>
+                        <tr>
+                            <td nowrap>└▶ 솔플 클탐</td>
+                            <td nowrap><input id='min1' value=''>분 <input id='sec1' value=''>초</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id='time2' style='display: inline-block; width: 340px;'>
+                    <table style='table-layout:fixed;'>
+                        <col width="150px" />
+                        <col width="170px" />
+                        <tr>
+                            <td nowrap>보정 후 분당딜</td>
+                            <td nowrap><input id='dpm2' value=''>%</td>
+                        </tr>
+                        <tr>
+                            <td nowrap>└▶ 솔플 클탐</td>
+                            <td nowrap><input id='min2' value=''>분 <input id='sec2' value=''>초</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <hr>
+        <div id='footer' style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold;'>
+            본 계산기의 데미지 계산식은 <a style="color: black;" href='http://www.inven.co.kr/board/heroes/2028/38144'
+                target='blank'>http://www.inven.co.kr/boa...</a> 글을 참고했습니다.
+        </div>
+    </div>
+</body>
+
 </html>
