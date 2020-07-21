@@ -31,49 +31,49 @@ const bossstat = {
     },
     claire: {
         def: 23000,
-        res: 125,
+        res: 116,
         dongsukres: 5,
         dongsukmindmg: 30
     },
     elchulus: {
         def: 24000,
-        res: 127,
+        res: 118,
         dongsukres: 10,
         dongsukmindmg: 20
     },
     macha: {
         def: 25000,
-        res: 130,
-        dongsukres: 30,
+        res: 120,
+        dongsukres: 20,
         dongsukmindmg: 10
     },
     agares: {
         def: 26000,
-        res: 131,
-        dongsukres: 40,
+        res: 122,
+        dongsukres: 30,
         dongsukmindmg: 10
     },
     lugh: {
         def: 26500,
-        res: 132,
-        dongsukres: 45,
+        res: 124,
+        dongsukres: 35,
         dongsukmindmg: 10
     },
     selren: {
         def: 27000,
-        res: 132,
-        dongsukres: 50,
+        res: 126,
+        dongsukres: 40,
         dongsukmindmg: 10
     },
     marject: {
         def: 27000,
-        res: 132,
-        dongsukres: 50,
+        res: 130,
+        dongsukres: 45,
         dongsukmindmg: 10
     },
     aodhan: {
         def: 27600,
-        res: 136,
+        res: 134,
         dongsukres: 50,
         dongsukmindmg: 10
     },
@@ -81,6 +81,18 @@ const bossstat = {
         def: 29000,
         res: 145,
         dongsukres: 55,
+        dongsukmindmg: 10
+    },
+    nextboss1: {
+        def: 29600,
+        res: 151,
+        dongsukres: 60,
+        dongsukmindmg: 10
+    },
+    nextboss2: {
+        def: 30200,
+        res: 157,
+        dongsukres: 65,
         dongsukmindmg: 10
     },
     special: {
