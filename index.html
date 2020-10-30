@@ -140,7 +140,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td nowrap>대항력</td>
+                            <td nowrap>Counterforce</td>
                             <td><input id='dongsuk' value='200'></td>
                         </tr>
                     </table>
@@ -152,14 +152,14 @@
                         <col width="200px" />
                         <col width="120px" />
                         <tr>
-                            <td nowrap>유효 전투력 (크리 미포함)</td>
+                            <td nowrap>Effective Damage (No Critical)</td>
                             <td nowrap><input id='nocritdmg'><input
                                     style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox"
                                     id="compnocrit"
                                     onchange="document.querySelector('#compcrit').checked = !(this.checked);"></td>
                         </tr>
                         <tr>
-                            <td nowrap>유효 전투력 (크리 포함)</td>
+                            <td nowrap>Effective Damage (With Critical)</td>
                             <td nowrap><input id='critdmg'><input
                                     style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox"
                                     id="compcrit" checked
@@ -208,23 +208,23 @@
                             </td>
                         </tr>
                         <tr>
-                            <td nowrap>대항력</td>
+                            <td nowrap>Counterforce</td>
                             <td><input id='dongsuk' value='200'></td>
                         </tr>
                     </table>
                     <hr>
-                    <button style='width: 324px;' onclick='exec(2);'>2번 캐릭터 전투력 계산</button>
+                    <button style='width: 324px;' onclick='exec(2);'>Calculate Effective Combat Power</button>
                 </div>
                 <div id='output'>
                     <table style='table-layout:fixed;'>
                         <col width="200px" />
                         <col width="120px" />
                         <tr>
-                            <td nowrap>유효 전투력 (크리 미포함)</td>
+                            <td nowrap>Effective Damage (No Critical)</td>
                             <td><input id='nocritdmg'></td>
                         </tr>
                         <tr>
-                            <td nowrap>유효 전투력 (크리 포함)</td>
+                            <td nowrap>Effective Damage (With Critical)</td>
                             <td><input id='critdmg'></td>
                         </tr>
                     </table>
