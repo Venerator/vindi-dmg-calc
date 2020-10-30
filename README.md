@@ -1,2 +1,2 @@
 # Vindictus Damage Calculator
-<https://venerator.github.io//>
+<https://venerator.github.io/>
