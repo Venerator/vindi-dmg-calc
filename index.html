@@ -245,10 +245,10 @@
         <hr>
         <div id='footer'
             style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; font-size: 14px; '>
-            <span style="color:red">보</span>The results of this calculator is an estimation.<br />
-            <span style="color:red">대</span>But it is the best that we can do given the differences in gear.<br />
-            <span style="color:red">또</span>For the cases of critical being modififed like Lann and Karok the comparison with Critical is wasted.<br />
-            타 캐릭과는 다르게 적용되기 때문에 동스펙 비교 기능이 의미없을 수 있습니다.<br />
+            <span style="color:red"></span>The results of this calculator is an estimation.<br />
+            <span style="color:red"></span>But it is the best that we can do given the differences in gear.<br />
+            <span style="color:red"></span>For the cases of critical being modififed like Lann and Karok the comparison with Critical is wasted.<br />
+            <br />
         </div>
         <hr>
         <hr>
@@ -307,16 +307,15 @@
                         <col width="150px" />
                         <col width="170px" />
                         <tr>
-                            <td nowrap>보정 전 클탐</td>
-                            <td nowrap><input id='min1' value='30'>분 <input id='sec1' value='00'>초</td>
+                            <td nowrap>Damage Before Scaled</td>
+                            <td nowrap><input id='min1' value='30'>Minutes <input id='sec1' value='00'>Seconds</td>
                         </tr>
                         <tr>
                             <td nowrap>본인 딜량</td>
                             <td nowrap><input id='timedeal1' value='100'>%</td>
                         </tr>
                     </table>
-                    <button style='display: block; width: 100%;' onclick='timecalc(1);'>풀스펙(6400/3550) 기준 분당딜, 솔플 클탐
-                        계산하기</button>
+                    <button style='display: block; width: 100%;' onclick='timecalc(1);'>Calculate Damage With (6400 AD, 3550 ALR)</button>
                 </div>
                 <div id='time2' style='display: inline-block; width: 340px;'>
                     <table style='table-layout:fixed;'>
@@ -324,15 +323,14 @@
                         <col width="170px" />
                         <tr>
                             <td nowrap>보정 전 클탐</td>
-                            <td nowrap><input id='min2' value='30'>분 <input id='sec2' value='00'>초</td>
+                            <td nowrap><input id='min2' value='30'>Minutes <input id='sec2' value='00'>Seconds</td>
                         </tr>
                         <tr>
                             <td nowrap>본인 딜량</td>
                             <td nowrap><input id='timedeal2' value='100'>%</td>
                         </tr>
                     </table>
-                    <button style='display: block; width: 100%;' onclick='timecalc(2);'>풀스펙(6400/3550) 기준 분당딜, 솔플 클탐
-                        계산하기</button>
+                    <button style='display: block; width: 100%;' onclick='timecalc(2);'>Calcuate Damage with (6400 AD, 3550 ALR)</button>
                 </div>
             </div>
             <div id='output'>
@@ -341,7 +339,7 @@
                         <col width="150px" />
                         <col width="170px" />
                         <tr>
-                            <td nowrap>보정 후 분당딜</td>
+                            <td nowrap>Scaled DPM</td>
                             <td nowrap><input id='dpm1' value=''>%</td>
                         </tr>
                         <tr>
@@ -355,12 +353,12 @@
                         <col width="150px" />
                         <col width="170px" />
                         <tr>
-                            <td nowrap>보정 후 분당딜</td>
+                            <td nowrap>Scaled DPM</td>
                             <td nowrap><input id='dpm2' value=''>%</td>
                         </tr>
                         <tr>
                             <td nowrap>└▶ 솔플 클탐</td>
-                            <td nowrap><input id='min2' value=''>분 <input id='sec2' value=''>초</td>
+                            <td nowrap><input id='min2' value=''>Minutes <input id='sec2' value=''>Seconds</td>
                         </tr>
                     </table>
                 </div>
@@ -369,8 +367,8 @@
         <hr>
         <hr>
         <div id='footer' style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold;'>
-            The damage calculation of this calculator is based on this <a style="color: black;" href='https://ccuuyyjj.github.io/heroes-dmg-calc/'
-                target='blank'>http://www.inven.co.kr/boa...</a> 
+            The damage calculation of this calculator is based on this <a style="color: black;" href='http://www.inven.co.kr/board/heroes/2028/38144'
+                target='blank'>http://www.inven.co.kr/board/heroes/2028/38144</a> 
         </div>
     </div>
 </body>
