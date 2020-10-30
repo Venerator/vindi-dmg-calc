@@ -138,6 +138,13 @@ const bossstat = {
         res: 157,
         dongsukres: 65,
         dongsukmindmg: 100
+    },
+    
+    siethe: {
+        def: 30800,
+        res: 164,
+        dongsukres: 70,
+        dongsukmindmg: 100
     }
 }
 
