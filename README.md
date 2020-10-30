@@ -1,2 +1,2 @@
-# heroes-dmg-calc
+# Vindictus Damage Calculator
 <https://venerator.github.io//>
