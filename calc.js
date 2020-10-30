@@ -126,10 +126,17 @@ const bossstat = {
         dongsukmindmg: 100
     },
 
-    aodhan: {
-        def: 27600,
-        res: 134,
-        dongsukres: 50,
+    nyle: {
+        def: 29600,
+        res: 151,
+        dongsukres: 60,
+        dongsukmindmg: 100
+    },
+
+    ragnahim: {
+        def: 30200,
+        res: 157,
+        dongsukres: 65,
         dongsukmindmg: 100
     }
 }
