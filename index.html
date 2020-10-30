@@ -52,49 +52,49 @@
                 <col width="200px" />
                 <col width="120px" />
                 <tr>
-                    <td nowrap>대상 (보스)</td>
+                    <td nowrap>Select Boss</td>
                     <td>
                         <select id="boss"
                             onchange="if(this.value == 'custom') {document.querySelectorAll('.customstat').forEach(function(x){x.style.display='';});} else {document.querySelectorAll('.customstat').forEach(function(x){x.style.display='none';});}">
-                            <option label="6종" value="lvl90raids"></option>
+                            <option label="Level 90 Ex-Raids" value="lvl90raids"></option>
                             <option label="Dullahan" value="dullahan"></option>
-                            <option label="에스 시더" value="aessidhe"></option>
+                            <option label="Aes Sidhe" value="aessidhe"></option>
                             <option label="Arcana" value="arcana"></option>
-                            <option label="루파키투스" value="rupacitus"></option>
+                            <option label="Rupacitus" value="rupacitus"></option>
                             <option label="Claire" value="claire"></option>
-                            <option label="폭주한 엘쿨루스" value="elchulus"></option>
-                            <option label="마하" value="macha"></option>
-                            <option label="아가레스" value="agares"></option>
-                            <option label="루(팔라라)" value="lugh"></option>
-                            <option label="셀렌" value="selren"></option>
-                            <option label="마르젝트" value="marject"></option>
-                            <option label="아이단" value="aodhan"></option>
-                            <option label="세자르" value="caesar"></option>
-                            <option label="네베레스" value="nextboss1"></option>
-                            <option label="라그나힘" value="nextboss2"></option>
-                            <option label="스페셜 던전" value="special"></option>
-                            <option label="네반" value="neamhain"></option>
-                            <option label="발로르" value="balor" selected></option>
-                            <option label="브리지트" value="brigit"></option>
+                            <option label="Outraged Elchulus" value="elchulus"></option>
+                            <option label="Macha" value="macha"></option>
+                            <option label="Agares" value="agares"></option>
+                            <option label="Brilliant Lugh" value="lugh"></option>
+                            <option label="Selren" value="selren"></option>
+                            <option label="Marject" value="marject"></option>
+                            <option label="Aodhan" value="aodhan"></option>
+                            <option label="Cesar" value="caesar"></option>
+                            <option label="Next Boss 1" value="nextboss1"></option>
+                            <option label="Next Boss 2" value="nextboss2"></option>
+                            <option label="Specials" value="special"></option>
+                            <option label="Neamhain" value="neamhain"></option>
+                            <option label="Balor" value="balor" selected></option>
+                            <option label="Brigid" value="brigit"></option>
                             <option label="[Hell] Redeemer" value="hell"></option>
-                            <option label="사용자 지정" value="custom"></option>
+                            <option label="Custom" value="custom"></option>
                         </select>
                     </td>
                 </tr>
                 <tr class='customstat' style='display: none;'>
-                    <td nowrap>보스 방어력</td>
+                    <td nowrap>Boss Defense</td>
                     <td><input id='bossdef' value='0'></td>
                 </tr>
                 <tr class='customstat' style='display: none;'>
-                    <td nowrap>보스 크리티컬 저항</td>
+                    <td nowrap>Boss Critical Resistance</td>
                     <td><input id='bossres' value='0'></td>
                 </tr>
                 <tr class='customstat' style='display: none;'>
-                    <td nowrap>보스 대항력 저항(0 = 대항력 미적용)</td>
+                    <td nowrap>Boss Counterforce Resistance (Put 0 if None)</td>
                     <td><input id='bossdongsukres' value='0'></td>
                 </tr>
                 <tr class='customstat' style='display: none;'>
-                    <td nowrap>대항력 보정 최소치(10 = 대항력이 낮아도 최소 10%의 데미지 적용)</td>
+                    <td nowrap>Minimum Damage CF Outdated</td>
                     <td><input id='bossdongsukmindmg' value='100'></td>
                 </tr>
             </table>
