@@ -56,7 +56,7 @@
                     <td>
                         <select id="boss"
                             onchange="if(this.value == 'custom') {document.querySelectorAll('.customstat').forEach(function(x){x.style.display='';});} else {document.querySelectorAll('.customstat').forEach(function(x){x.style.display='none';});}">
-                            <option label="Level 90 Ex-Raids" value="lvl90raids"></option>
+                            <option label="Level 90 Raids" value="lvl90raids"></option>
                             <option label="Dullahan" value="dullahan"></option>
                             <option label="Aes Sidhe" value="aessidhe"></option>
                             <option label="Arcana" value="arcana"></option>
@@ -245,9 +245,9 @@
         <hr>
         <div id='footer'
             style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; font-size: 14px; '>
-            <span style="color:red">보</span>정기의 결과값은 항상 실제와는 다를 수 있으며, 참고용으로만 써주세요.<br />
-            <span style="color:red">대</span>부분의 경우 파티플과 솔플의 DPS가 다르므로 솔플 클탐은 재미로만 봐주세요.<br />
-            <span style="color:red">또</span>한, 리시타나 블래스터 카록의 경우 크리티컬 확률 수치에 따른 데미지 효율이<br />
+            <span style="color:red">보</span>The results of this calculator is an estimation.<br />
+            <span style="color:red">대</span>But it is the best that we can do given the differences in gear.<br />
+            <span style="color:red">또</span>For the cases of critical being modififed like Lann and Karok the comparison with Critical is wasted.<br />
             타 캐릭과는 다르게 적용되기 때문에 동스펙 비교 기능이 의미없을 수 있습니다.<br />
         </div>
         <hr>
@@ -259,7 +259,7 @@
                         <col width="200px" />
                         <col width="120px" />
                         <tr>
-                            <td nowrap>보정 전 미터기 딜량</td>
+                            <td nowrap>Damage % Before Scaling</td>
                             <td nowrap><input id='deal1' value='50'>%</td>
                         </tr>
                     </table>
@@ -269,13 +269,12 @@
                         <col width="200px" />
                         <col width="120px" />
                         <tr>
-                            <td nowrap>보정 전 미터기 딜량</td>
+                            <td nowrap>Damage % Before Scaling 2</td>
                             <td nowrap><input id='deal2' value='50'>%</td>
                         </tr>
                     </table>
                 </div>
-                <button style='display: block; width: 100%;' onclick='compare();'>선택한 유효전투력 기준으로 동스펙 2인 플레이시 딜량
-                    보정해보기</button>
+                <button style='display: block; width: 100%;' onclick='compare();'>Click to show estimated Damage % if the gear were scaled.</button>
             </div>
             <div id='output'>
                 <div id='comp1' style='display: inline-block; width: 340px;'>
@@ -283,7 +282,7 @@
                         <col width="200px" />
                         <col width="120px" />
                         <tr>
-                            <td nowrap>보정 후 딜량</td>
+                            <td nowrap>Damage after equalized stats</td>
                             <td nowrap><input id='deal1'>%</td>
                         </tr>
                     </table>
@@ -293,7 +292,7 @@
                         <col width="200px" />
                         <col width="120px" />
                         <tr>
-                            <td nowrap>보정 후 딜량</td>
+                            <td nowrap>Damage after equalized stats</td>
                             <td nowrap><input id='deal2'>%</td>
                         </tr>
                     </table>
