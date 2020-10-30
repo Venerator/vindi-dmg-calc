@@ -83,18 +83,7 @@ const bossstat = {
         dongsukres: 55,
         dongsukmindmg: 10
     },
-    nextboss1: {
-        def: 29600,
-        res: 151,
-        dongsukres: 60,
-        dongsukmindmg: 10
-    },
-    nextboss2: {
-        def: 30200,
-        res: 157,
-        dongsukres: 65,
-        dongsukmindmg: 10
-    },
+   
     special: {
         def: 24000,
         res: 127,
