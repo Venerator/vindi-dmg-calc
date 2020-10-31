@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Vindictus Damage Calculator</title>
     <meta name="viewport" content="width=1000">
@@ -12,9 +11,9 @@
             width: 100%;
             margin: 0;
             padding: 0;
-        }
+}
 
-        input {
+input {
             width: calc(100% - 4px);
             margin: 0;
             padding: 0;
@@ -38,7 +37,19 @@
         tr td:first-child {
             padding-left: 10px;
         }
-    </style>
+
+.content {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+}
+</style>
+
+<body>
+
+<div class="content">
+
 </head>
 
 <body>
@@ -47,10 +58,10 @@
         <div id='header' style='text-align: center; font-size: 30px; font-weight: bold;'>Vindictus Damage Calcuator</div>
         <hr>
         <hr>
-        <div id='calc' style='width: 690px; margin: 0; padding: 0;'>
+        <div id='calc' style='width: 800px; margin: 0; padding: 0;'>
             <table style='table-layout:fixed; margin: 0 auto;'>
-                <col width="400px" />
-                <col width="240px" />
+                <col width="1px" />
+                <col width="0px" />
                 <tr>
                     <td nowrap>Select Boss</td>
                     <td>
@@ -100,11 +111,11 @@
             </table>
             <hr>
             <hr>
-            <div id='calc1' style='display: inline-block; width: 340px;'>
+            <div id='calc1' style='display: inline-block; width: 398px;'>
                 <div style='text-align: center;'>Player 1</div>
                 <div id='input'>
                     <table style='table-layout:fixed;'>
-                        <col width="200px" />
+                        <col width="275px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Attack</td>
@@ -145,11 +156,11 @@
                         </tr>
                     </table>
                     <hr>
-                    <button style='width: 324px;' onclick='exec(1);'>Calculate Effective Combat Power</button>
+                    <button style='width: 398px;' onclick='exec(1);'>Calculate Effective Combat Power</button>
                 </div>
                 <div id='output'>
                     <table style='table-layout:fixed;'>
-                        <col width="200px" />
+                        <col width="265px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Effective Damage (No Crit)</td>
@@ -168,11 +179,11 @@
                     </table>
                 </div>
             </div>
-            <div id='calc2' style='display: inline-block; width: 340px;'>
+            <div id='calc2' style='display: inline-block; width: 398px;'>
                 <div style='text-align: center;'>Player 2</div>
                 <div id='input'>
                     <table style='table-layout:fixed;'>
-                        <col width="200px" />
+                        <col width="275px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Attack</td>
@@ -213,11 +224,11 @@
                         </tr>
                     </table>
                     <hr>
-                    <button style='width: 324px;' onclick='exec(2);'>Calculate Effective Combat Power</button>
+                    <button style='width: 398px;' onclick='exec(2);'>Calculate Effective Combat Power</button>
                 </div>
                 <div id='output'>
                     <table style='table-layout:fixed;'>
-                        <col width="200px" />
+                        <col width="265px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Effective Damage (No Crit)</td>
@@ -233,76 +244,78 @@
         </div>
         <hr>
         <div id='footer'
-            style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; text-align: center;'>
-            ↑&nbsp;&nbsp;&nbsp;&nbsp;<br />
+            style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; text-align: center; font-size: 16px;'>
+            ↑<br />
             To use the calculator below make sure you calculate the effective damage.
         </div>
         <hr>
         <hr>
-        <div id='appendix' style='text-align: center; font-size: 22px; font-weight: bold;'>Scaled Damage Calculator <span
+        <div id='appendix' style='text-align: center; font-size: 35px; font-weight: bold;'>Scaled Damage Calculator <span
                 style="color:red">(Damage is an estimate)</span></div>
         <hr>
         <hr>
         <div id='footer'
-            style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; font-size: 14px; '>
-            The results of this calculator is an estimation.<br />
-            But it is the best that we can do given the differences in gear.<br />
-            For the cases of critical being modififed like Lann and Karok the comparison with Critical is wasted.<br />
+            style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; text-align: center; font-size: 16px;  '>
+            The results of this calculator is an estimation.			<br />
+            But it is the best that we can do given the differences in gear.
             <br />
+            For the cases of critical being modififed like Lann and Karok the comparison with Critical is wasted.
+            <br />
+  
         </div>
         <hr>
         <hr>
         <div id='compare' style='width: 800px; margin: 0; padding: 0;'>
             <div id='input'>
-                <div id='comp1' style='display: inline-block; width: 500px;'>
+                <div id='comp1' style='display: inline-block; width: 398px;'>
                     <table style='table-layout:fixed;'>
                         <col width="200px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Damage Done</td>
-                            <td nowrap><input id='deal1' value='50'>%</td>
+                            <td nowrap><input id='deal1' value='50'> %</td>
                         </tr>
                     </table>
                 </div>
-                <div id='comp2' style='display: inline-block; width: 500px;'>
+                <div id='comp2' style='display: inline-block; width: 398px;'>
                     <table style='table-layout:fixed;'>
                         <col width="200px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Damage Done</td>
-                            <td nowrap><input id='deal2' value='50'>%</td>
+                            <td nowrap><input id='deal2' value='50'> %</td>
                         </tr>
                     </table>
                 </div>
                 <button style='display: block; width: 100%;' onclick='compare();'>Calculate Scaled Damage Difference.</button>
             </div>
             <div id='output'>
-                <div id='comp1' style='display: inline-block; width: 500px;'>
+                <div id='comp1' style='display: inline-block; width: 398px;'>
                     <table style='table-layout:fixed;'>
                         <col width="200px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Damage after equalized stats</td>
-                            <td nowrap><input id='deal1'>%</td>
+                            <td nowrap><input id='deal1'> %</td>
                         </tr>
                     </table>
                 </div>
-                <div id='comp2' style='display: inline-block; width: 500px;'>
+                <div id='comp2' style='display: inline-block; width: 398px;'>
                     <table style='table-layout:fixed;'>
                         <col width="200px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Damage after equalized stats</td>
-                            <td nowrap><input id='deal2'>%</td>
+                            <td nowrap><input id='deal2'> %</td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
         <hr>
-        <div id='timecalc' style='width: 690px; margin: 0; padding: 0;'>
+        <div id='timecalc' style='width: 800px; margin: 0; padding: 0;'>
             <div id='input'>
-                <div id='time1' style='display: inline-block; width: 500px;'>
+                <div id='time1' style='display: inline-block; width: 398px;'>
                     <table style='table-layout:fixed;'>
                         <col width="200px" />
                         <col width="120px" />
@@ -317,7 +330,7 @@
                     </table>
                     <button style='display: block; width: 100%;' onclick='timecalc(1);'>Calculate Damage With (6000 AD, 3550 ALR)</button>
                 </div>
-                <div id='time2' style='display: inline-block; width: 500px;'>
+                <div id='time2' style='display: inline-block; width: 398px;'>
                     <table style='table-layout:fixed;'>
                         <col width="200px" />
                         <col width="120px" />
@@ -334,10 +347,10 @@
                 </div>
             </div>
             <div id='output'>
-                <div id='time1' style='display: inline-block; width: 500px;'>
+                <div id='time1' style='display: inline-block; width: 398px;'>
                     <table style='table-layout:fixed;'>
-                        <col width="100%" />
-                        <col width="100%" />
+                        <col width="200px" />
+                        <col width="120px" />
                         <tr>
                             <td nowrap>Scaled DPM</td>
                             <td nowrap><input id='dpm1' value=''>%</td>
@@ -348,7 +361,7 @@
                         </tr>
                     </table>
                 </div>
-                <div id='time2' style='display: inline-block; width: 500px;'>
+                <div id='time2' style='display: inline-block; width: 398px;'>
                     <table style='table-layout:fixed;'>
                         <col width="200px" />
                         <col width="120px" />
@@ -370,7 +383,7 @@
             The damage calculation of this calculator is based on this <a style="color: black;" href='http://www.inven.co.kr/board/heroes/2028/38144'
                 target='blank'>http://www.inven.co.kr/board/heroes/2028/38144</a> 
         </div>
-    </div>
-</body>
+</div>
 
+</body>
 </html>
