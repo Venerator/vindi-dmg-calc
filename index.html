@@ -160,21 +160,17 @@ input {
                 </div>
                 <div id='output'>
                     <table style='table-layout:fixed;'>
-                        <col width="265px" />
+                        <col width="300px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Effective Damage (No Crit)</td>
-                            <td nowrap><input id='nocritdmg'><input
-                                    style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox"
-                                    id="compnocrit"
-                                    onchange="document.querySelector('#compcrit').checked = !(this.checked);"></td>
+                            <td nowrap><input id='nocritdmg'disabled>
+                            </td>
                         </tr>
                         <tr>
                             <td nowrap>Effective Damage (Crit)</td>
-                            <td nowrap><input id='critdmg'><input
-                                    style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox"
-                                    id="compcrit" checked
-                                    onchange="document.querySelector('#compnocrit').checked = !(this.checked);"></td>
+                            <td nowrap><input id='critdmg'disabled>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -228,15 +224,15 @@ input {
                 </div>
                 <div id='output'>
                     <table style='table-layout:fixed;'>
-                        <col width="265px" />
+                        <col width="300px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Effective Damage (No Crit)</td>
-                            <td><input id='nocritdmg'></td>
+                            <td><input id='nocritdmg'disabled></td>
                         </tr>
                         <tr>
                             <td nowrap>Effective Damage (Crit)</td>
-                            <td><input id='critdmg'></td>
+                            <td><input id='critdmg'disabled></td>
                         </tr>
                     </table>
                 </div>
@@ -245,7 +241,7 @@ input {
         <hr>
         <div id='footer'
             style='width: fit-content; margin: 0 auto; text-size-adjust:none; font-weight: bold; text-align: center; font-size: 16px;'>
-            ↑<br />
+            
             To use the calculator below make sure you calculate the effective damage.
         </div>
         <hr>
@@ -296,7 +292,7 @@ input {
                         <col width="120px" />
                         <tr>
                             <td nowrap>Damage after equalized stats</td>
-                            <td nowrap><input id='deal1'> %</td>
+                            <td nowrap><input id='deal1'disabled> %</td>
                         </tr>
                     </table>
                 </div>
@@ -306,7 +302,7 @@ input {
                         <col width="120px" />
                         <tr>
                             <td nowrap>Damage after equalized stats</td>
-                            <td nowrap><input id='deal2'> %</td>
+                            <td nowrap><input id='deal2'disabled> %</td>
                         </tr>
                     </table>
                 </div>
@@ -353,11 +349,11 @@ input {
                         <col width="120px" />
                         <tr>
                             <td nowrap>Scaled DPM</td>
-                            <td nowrap><input id='dpm1' value=''>%</td>
+                            <td nowrap><input id='dpm1' value='' disabled >%</td>
                         </tr>
                         <tr>
                             <td nowrap>└▶ Time</td>
-                            <td nowrap><input id='min1' value=''>Minutes <input id='sec1' value=''>Seconds</td>
+                            <td nowrap><input id='min1' value='' disabled >Minutes <input id='sec1' value='' disabled >Seconds</td>
                         </tr>
                     </table>
                 </div>
@@ -367,11 +363,11 @@ input {
                         <col width="120px" />
                         <tr>
                             <td nowrap>Scaled DPM</td>
-                            <td nowrap><input id='dpm2' value=''>%</td>
+                            <td nowrap><input id='dpm2' value='' disabled >%</td>
                         </tr>
                         <tr>
                             <td nowrap>└▶ Time</td>
-                            <td nowrap><input id='min2' value=''>Minutes <input id='sec2' value=''>Seconds</td>
+                            <td nowrap><input id='min2' value='' disabled>Minutes <input id='sec2' value=''disabled >Seconds</td>
                         </tr>
                     </table>
                 </div>
