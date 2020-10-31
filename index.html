@@ -160,16 +160,26 @@ input {
                 </div>
                 <div id='output'>
                     <table style='table-layout:fixed;'>
-                        <col width="300px" />
+                        <col width="250px" />
                         <col width="120px" />
                         <tr>
                             <td nowrap>Effective Damage (No Crit)</td>
                             <td nowrap><input id='nocritdmg'disabled>
+                            <input
+                                    style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox"
+                                    id="compnocrit"
+                                    onchange="document.querySelector('#compcrit').checked = !(this.checked);"></td>
+                        </tr>
                             </td>
                         </tr>
                         <tr>
                             <td nowrap>Effective Damage (Crit)</td>
                             <td nowrap><input id='critdmg'disabled>
+                            <input
+                                    style='width: auto; vertical-align: middle; margin-left: 7px;' type="checkbox"
+                                    id="compcrit" checked
+                                    onchange="document.querySelector('#compnocrit').checked = !(this.checked);"></td>
+                        </tr>
                             </td>
                         </tr>
                     </table>
